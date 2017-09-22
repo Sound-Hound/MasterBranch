@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"> <!-- !!!! REMEMEBER THESE META TAG INPUTS.... !!!! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- !!!! REMEMEBER THESE META TAG INPUTS.... !!!! -->
+    <title>Sound Hound - find music venues and live concerts near you!</title>
+    <!-- link to custom css -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <!-- link to bootstrap styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono" rel="stylesheet">
+    
+    <!-- link to jquery script -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+     <!-- link to popper js script-->
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <!-- link to bootstrap script-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <!-- link to firebase script -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <!-- link to local js  file-->
+    <script type="text/javascript" src="./assets/javascript/app.js"></script>
+</head>
+<body>
+    <div id="mainPageContainer" class="container-fluid">
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="bootstrap.html">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="index.html">Browse</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="modalPage.html">Events</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="artist.html">Artists</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="venue.html">Venues</a>
+  </li>
+</ul>
+        <div id="pageHeader" class="container-fluid">
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-12"> 
+                        <div class="page-header">
+                            <h1 id="mainTitle" class="page-header text-center">Artists</h1>  
+                            <div id="asideline"></div>
+                        </div>                  
+                    </div>
+                    <div class="col-sm-12">
+                    </div>                 
+                    <div id="bottomTextArea" class="col-sm-12">
+                        <h3 id="bottomText" class="text-center">Find your Who's Playing Near You.</h3>
+                    </div>                 
+                </div>
+                <!-- search bands/concerts -->
+                <div class="searchConcerts">
+            <form id="searchConcerts-form">
+        <label for="searchConcerts-input"></label>
+        <br>
+        <input type="text" id="searchConcerts-input" value="Find an Artist">
+        <br> 
+        <br>
+        <input id="findConcert" type="submit" value="Search">
+    </form>
+  </div>
+            </div>
+        </div>
+
+<!-- 2) Active Page: General-->
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- 2c) Active Page: Something 'Cool'--> 
+
+    <script type="text/javascript">
+    
+    //Modal Script
+    var name = "";
+    var zipcode = "";
+
+    var config = {
+        apiKey: "AIzaSyCLbEjKvRPiZdO3I6ADlExj_N0ZD60nATk",
+        authDomain: "recent-user-with-all-users.firebaseapp.com",
+        databaseURL: "https://recent-user-with-all-users.firebaseio.com",
+        storageBucket: "recent-user-with-all-users.appspot.com"
+    };
+    firebase.initializeApp(config);
+    var dataRef = firebase.database();
+
+
+    $(document).ready(function() {
+        console.log("paged = loaded")
+
+        $('#modalPage').on('show.bs.modal', function() {
+            event.preventDefault();
+
+            console.log("modal test")
+
+            name = $('<input type="text">').val();
+            $(".modal-title").append(name);
+
+            zipcode = $('<input type="number">').val();
+            $('.modal-body input').append(zipcode);
+
+            console.log("create")
+
+            // zipcode = button.data('whatever') // Extract info from data-* attributes  -> if had used a button to inuiate modal displaying...
+            // var modal = $(this) 
+            // modal.find('.modal-title').text('New message to ' + recipient)
+            // modal.find('.modal-body input').val(recipient)
+
+            dataRef = firebase.database(); //Initiating an AJAX request here (and then do the updating in a callback).
+            dataRef.ref().push({
+                name: name,
+                zipcode: zipcode,
+            });
+
+            dataRef.ref().on("child_added", function(childSnapshot) {
+                console.log((childSnapshot.val().name) + (childSnapshot.val().zipcode)); // Log everything that's coming out of snapshot
+            });
+
+        });
+    });
+
+    //Something Kewl Carousel Script
+    $('.carousel').data('interval="10"'); //Is this interval working?!
+    $('.carousel').data('ride="true"');
+
+    $(".carousel-item").carousel();
+
+    </script>
+
+</body>
+</html>

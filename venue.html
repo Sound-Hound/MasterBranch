@@ -22,7 +22,6 @@
 </head>
 
 <body>
-<h1>Venue Name</h1>
      <div id="mainPageContainer" class="container-fluid">
 <ul class="nav justify-content-center">
   <li class="nav-item">
@@ -47,25 +46,32 @@
 </div>
 
 <!-- main body -->
-<div class="container">
-
-  <!-- search venues -->  
-  <div class="searchVenues">
+ <div id="pageHeader" class="container-fluid">
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-12"> 
+                        <div class="page-header">
+                            <h1 id="mainTitle" class="page-header text-center">Venues</h1>  
+                            <div id="asideline"></div>
+                        </div>                  
+                    </div>
+                    <div class="col-sm-12">
+                    </div>                 
+                    <div id="bottomTextArea" class="col-sm-12">
+                        <h3 id="bottomText" class="text-center">Find the Lineup for Your Favorite Venue.</h3>
+                    </div>               
+                </div>
+                                <!-- search venues -->  
+      <div class="searchVenues">
     <form id="searchVenues-form">
         <label for="searchVenues-input"></label>
         <input type="text" id="searchVenues-input" value="Find a Venue"><br>
         <input id="findVenue" type="submit" value="Search">
     </form>
-  </div>
+  </div>  
+            </div>
+        </div>
 
-  <!-- search bands/concerts -->
-  <div class="searchConcerts">
-    <form id="searchConcerts-form">
-        <label for="searchConcerts-input"></label>
-        <input type="text" id="searchConcerts-input" value="Find a Concert"><br>
-        <input id="findConcert" type="submit" value="Search">
-    </form>
-  </div>
 
 
   </div>

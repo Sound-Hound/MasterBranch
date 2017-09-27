@@ -88,14 +88,6 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 	/*	display: block;*/
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> b9ff9a4d65e8fd6c6ba06e1e45a2f5bd24462ad6
-=======
-
->>>>>>> b9ff9a4d65e8fd6c6ba06e1e45a2f5bd24462ad6
 .imgIcon {
 	width: 250px;
 	height: 230px;
@@ -104,7 +96,7 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 
 .btn-search {
 	width: 250px;
-	height: 38px;
+	height: 40px;
 }
 
 .carousel-item {
@@ -120,7 +112,7 @@ img.d-block.carousel-pic {
 #TopTrendingText {
 	color: #E0E0E0;
 	font-family: 'Oxygen Mono', monospace;
-	font-size: 24px;
+	font-size: 28px;
 	background-color: transparent;
 	margin-top: 30px;
 }
@@ -131,23 +123,17 @@ img.d-block.carousel-pic {
 }
 
 #zipRefreshText {
-	color: #E0E0E0;
+	color: #A5A6C1;
 	font-family: 'Oxygen Mono', monospace;
 	font-size: 24px;
 	background-color: transparent;
 	margin-top: 60px;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 #searchSection {
 	margin-top: 5px;
 }
 
-=======
->>>>>>> b9ff9a4d65e8fd6c6ba06e1e45a2f5bd24462ad6
-=======
->>>>>>> b9ff9a4d65e8fd6c6ba06e1e45a2f5bd24462ad6
 /*	added some styling for list page/search results - J.J. */
 .container {
 	background-color: #2C75D6;

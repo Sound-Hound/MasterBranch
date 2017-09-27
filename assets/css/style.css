@@ -5,6 +5,11 @@
 	text-align: center;
 }
 
+#fullContainer {
+	background-color: #0E0A39;
+	height: 1500px;
+}
+
 #mainPageContainer {
 	background-color: #0E0A39;
 }

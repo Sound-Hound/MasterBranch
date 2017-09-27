@@ -64,6 +64,27 @@ h1.page-header.page1 {
 	background-color: #FBF6F6;
 }
 
+div.modal-header {
+	background-color: #1a1592;
+}
+
+h3.modal-title {
+	color: #fff;
+}
+
+div.modal-body {
+	background-color: #e3e4f3;
+}
+
+label.form-control-label {
+	color: #2e6da4;
+	font-size: 18px;
+}
+
+div.modal-footer {
+	background-color: #1a1592;
+}
+
 button#modalButton{
 	width: 300px;
 	height: 100px; 

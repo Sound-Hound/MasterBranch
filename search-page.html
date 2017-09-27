@@ -30,6 +30,7 @@
     <div id="mainPageContainer" class="container-fluid">
         <div id="pageHeader" class="container-fluid">
             <div class="jumbotron">
+                
                 <div class="row">
                     <div class="col-md-12"> 
                         <div class="page-header">
@@ -38,41 +39,22 @@
                         </div>                  
                     </div>
                 </div>
+
                 <div id="searchSection" class="row">
-                    <div class="col-sm-6">  
-                        <div id="searchConcerts" class="row">   
-                            <div class="col-sm-12"> 
-                                <img id="venueIcon" class="text-center imgIcon" src="assets/Images/venue4-icon.jpg" alt="Venue Icon">      
+                    <div class="col-sm-12">  
+                        <img id="venueIcon" class="text-center imgIcon" src="assets/Images/venue4-icon.jpg" alt="Venue Icon">      
+                        <br/>
+                        <br/>                              
+                        <form id="searchConcerts-form">
+                            <div class="form-group">      
+                                <input id="searchConcerts-input" class="form-control" type="text" placeholder="Find Music Near You"  style="width:250px; margin: 0 auto">
                                 <br/>
-                                <br/>                              
-                                <form id="searchConcerts-form">
-                                    <div class="form-group">      
-                                        <input id="searchConcerts-input" class="form-control" type="text" placeholder="Find a Venue"  style="width:250px; margin: 0 auto">    
-                                        <br/>
-                                        <button id="findConcert" class="btn btn-info btn-search" type="button" data-target="#">Search</button>
-                                    </div>
-                                </form>
+                                <button id="findConcert" class="btn btn-info btn-search" type="button" data-target="#">Search</button>                                
                             </div>
-                        </div>              
+                        </form>           
                     </div>
-                    <div class="col-sm-6">  
-                        <div id="searchConcerts" class="row">   
-                            <div class="col-sm-12"> 
-                                <img id="artistIcon" class="text-center imgIcon" src="assets/Images/artist-icon4.jpg" alt="Artist Icon">      
-                                <br/>
-                                <br/>                              
-                                <form id="searchConcerts-form">
-                                    <div class="form-group">      
-                                        <input id="searchArtists-input" class="form-control" type="text" placeholder="Find an Artist" style="width:250px; margin: 0 auto">    
-                                        <br/>
-                                        <button id="findArtist" class="btn btn-info btn-search" type="button" data-target="#">Search</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>              
-                    </div>
-                </div>                
- 
+                </div>
+
             </div>
         </div>
     </div>
@@ -82,6 +64,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div id="topTrendingCarousel" class="carousel slide" data-ride="carousel">
+                    <p id="TopTrendingText">Be and be seen! <br/> Here are the top concerts in your zip.</p>
                     
                     <div class="carousel-inner">    
                         <div class="carousel-item active">
@@ -125,7 +108,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="newZip">    
-                    <label id="zipRefreshText">Try a new zipcode</label>
+                    <label id="zipRefreshText">Not your jam?  Search a new spot! <br/> Just press rewind.</label>
                     <br/> 
                     <a href="modalPage.html" target="_blank"><img id="zipRefresh" class="text-center" src="assets/Images/rewind-button.jpg" alt="Venue Icon"></a>               
                 </div>

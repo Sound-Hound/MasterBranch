@@ -9,18 +9,28 @@
 	background-color: #0E0A39;
 }
 
+#carouselContainer {
+	background-color: #0E0A39;
+	height: 500px;
+}
+
+#zipRefreshContainer {
+	background-color: #3B45A8;
+	height: 250px;
+}
+
 #pageHeader {
 	background-image: url("../Images/SoundHound-pic1.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
-	height: 1200px;
+	height: 950px;
 
 }
 
 h1.page-header {
-	font-size: 8rem;
+	font-size: 7rem;
 	font-family: 'Oxygen', sans-serif;
 	color: #FBF6F6;
 /*	text-shadow: 25%;*/ /* How can we make the shadow effect?*/
@@ -30,7 +40,7 @@ h1.page-header {
 	padding-top: 3%;
 }
 
-#asideline { /*!Find the default underline in Bootstrap!*/
+#underline { /*!Find the default underline in Bootstrap!*/
 	height: 2px;
 	width: 40%;
 	margin: 0 auto;
@@ -54,9 +64,9 @@ h3#bottomText {
 
 #bottomTextArea,h3 {
 	width: 100%;
-	position: absolute;
-	bottom: 20px;
-	margin: 0 auto;
+/*	position: absolute;*/
+/*	bottom: 20px;*/
+	margin-top: 3vh;
 }
 
 div .jumbotron{ /*What is the difference between a space and no-space between the element nodes?*/
@@ -71,4 +81,38 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 .carousel-item img {
 	margin: 0 auto;
 	/*	display: block;*/
+}
+
+.imgIcon {
+	width: 200px;
+	height: 180px;
+	margin-top: 35vh;
+}
+
+.btn-search {
+	width: 250px;
+	height: 38px;
+}
+
+.carousel-item {
+	margin: 0 auto;
+}
+
+img.d-block.carousel-pic {
+	width: 600px;
+	height: 400px;
+	margin-top: 50px;
+}
+
+#zipRefresh {
+	width: 200px;
+	height: 150px;
+}
+
+#zipRefreshText {
+	color: #E0E0E0;
+	font-family: 'Oxygen Mono', monospace;
+	font-size: 24px;
+	background-color: transparent;
+		margin-top: 50px;
 }

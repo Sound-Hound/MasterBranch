@@ -52,7 +52,7 @@ h1.page-header {
 	background-color: #FBF6F6;
 }
 
-button#modalButton {
+#modalButton button{
 	width: 300px;
 	height: 100px; 
 	margin-top: 50px;
@@ -61,7 +61,7 @@ button#modalButton {
 	border-radius: 0%;
 }
 
-h3#bottomText {
+#bottomText h3{
 	font-size: 3.5rem;
 	font-family: 'Oxygen', sans-serif;
 	color: #FBF6F6;
@@ -88,6 +88,7 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 	/*	display: block;*/
 }
 
+<<<<<<< jettTech
 .imgIcon {
 	width: 200px;
 	height: 180px;
@@ -120,4 +121,84 @@ img.d-block.carousel-pic {
 	font-size: 24px;
 	background-color: transparent;
 		margin-top: 50px;
+}
+=======
+/*	added some styling for list page/search results - J.J. */
+.container {
+	background-color: #2C75D6;
+	max-width:60%;
+}
+
+.header p {
+	display:inline-block;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:0px;
+	font-size: 16px;
+	color: black;
+}
+
+.header h1 {
+	display: inline-block;
+	padding-right:20px;
+	padding-left:20px;
+	color:white;
+	text-shadow:2px 2px black;
+	border-bottom: 2px solid darkgrey;
+    padding-bottom: 10px;
+}
+
+.back img {
+	width:30px;
+	height:30px;
+}
+
+.home img {
+	width:30px;
+	height:30px;
+}
+
+.dropdown {
+	display:inline-block;
+}
+
+.dropdowns {
+	margin-bottom:20px;
+}
+
+.dropdown a {
+	color:black;
+}
+
+.sortBy  {
+	float:left;
+}
+
+.filter {
+	float:right;
+}
+
+.searchResult {
+	background-position:center;
+	background-size:cover;
+	height:200px;
+	border:2px solid darkgray;
+	margin:20px;
+}
+
+.resultsContainer {
+	margin:20px;
+}
+
+.textData {
+	background-color:black;
+	opacity:0.8;
+	border-radius: 10px;
+	padding:10px;
+	font-size:18px;
+	color: white;
+}
+
+.updateResults {
+	margin-bottom:20px;
 }

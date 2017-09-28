@@ -54,7 +54,7 @@
                         </form>           
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -121,16 +121,27 @@
     $(document).ready(function() {
         console.log("paged = loaded")
 
+        console.log("This is the sessionStorage : " + sessionStorage.getItem("zip"));
+
+//////////////////////////////////////////////////////////////////////////////////////// 
+        
         $('.carousel').data('interval="20"'); //Is this interval working?!
         $('.carousel').data('ride="true"');
         $(".carousel-item").carousel();  
-    });
 
-// DYNAMICALL UPDATE THESE USING THE EVENTBRITE API!!!
+//////////////////////////////////////////////////////////////////////////////////////// 
+
+ // DYNAMICALL UPDATE THESE USING THE EVENTBRITE API!!!
+
 
 // <IMG> CAROUSEL PICS: id="firstCarouselPic"
 // <H3> ARTIST LABEL: id="firstArtistLabel">First Artist Label
-// <P>> VENUE LABEL: id="firstVenueLabel">First Venue Label
+// <P>> VENUE LABEL: id="firstVenueLabel">First Venue Label   
+
+
+
+    });
+
 
     </script>
 

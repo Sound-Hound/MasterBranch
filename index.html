@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge"> <!-- !!!! REMEMEBER THESE META TAG INPUTS.... !!!! -->
-    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- !!!! REMEMEBER THESE META TAG INPUTS.... !!!! -->
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sound Hound - Disocver live music near you!</title>
+
     <!-- link to custom css -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <!-- link to bootstrap styling -->
@@ -68,6 +69,7 @@
                                            <!-- <a href="search-page.html">
                                                 <button id="zipButton" class="submit btn btn-primary" type="button" style="background-color:#1a1592; height:40px">Start Your Hunt</button>
                                             </a> -->
+
                                         </div>
                                     </div>
                                 </div>
@@ -97,29 +99,8 @@
         firebase.initializeApp(config);
         var dataRef = firebase.database();
 
-////////////////////////////////////////////////////////////////////////////////////////  
-    
-    // function createGifButton (searchArray, gifClass, searchNo, gifPostArea) {
-    //     $(gifPostArea).empty();
 
-    //     for (var i = 0; i < searchArray.length; i++) {
-    //             var button = $("<button>");
-    //             button.addClass(gifClass);
-    //             button.attr("data-type", searchArray[i]); //this assigns an attribue called 'data-type' with a value that ==== the value of the current index in the sesarchTermArray, which in this case is a superhero name (ie. batman).
-    //             button.attr("data-num", searchNo)
-    //             button.text(searchArray[i]); //this displays the value (in this case === a superhero name) of the item in the area.
-    //             $(gifPostArea).append(button);
-    //         }
-    //     };
-   
-
-    // createGifButton(searchTermArray, "searchedGif", searchTermNum, "#searchedGif");
-    // $("#searchBox").on("click", function() { //This resets the search box each time someone clicks inside it!
-    //     $("#searchBox").val("");
-    //     $("#gifAmount").val("");
-    // });
-
-//////////////////////////// REAL JS - LOGIC //////////////////////////////////////
+//////////////////////////// MODAL LOGIC //////////////////////////////////////
        
         $(document).ready(function() {
             console.log("paged = loaded");
@@ -166,8 +147,15 @@
                         throw "too little characters";
                     }
                     else {
-                       console.log("search-page re-orientation nec")
+                       console.log("err: search-page SHOULD be working!");
+
                        // RECORD THE ZIP ----> LOCAL STORAGE!!!!
+                       zipInput.trim();
+                       sessionStorage.clear();
+                       sessionStorage.setItem("zip", zipInput);
+                       console.log("This is the sessionStorage : " +sessionStorage.getItem("zip"));
+                       
+                       $("#recipient-zip").val("");
                        window.location.href = searchPage;
                     }
                 }
@@ -186,29 +174,24 @@
                 
                 zipFunction();                       
             });
-            
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-            ///// FIREBASE RECORDING: //////
-            // zipcode = $('<input type="number">').val();
-            // $('.modal-body input').append(zipcode);
-            // console.log("create")
+            /// FIREBASE RECORDING: //////
 
+            dataRef = firebase.database(); //Initiating an AJAX request here (and then do the updating in a callback).
+            dataRef.ref().push({
+                name: name,
+                zipcode: zipcode,
+            });
 
-            // dataRef = firebase.database(); //Initiating an AJAX request here (and then do the updating in a callback).
-            // dataRef.ref().push({
-            //     name: name,
-            //     zipcode: zipcode,
-            // });
-
-            // dataRef.ref().on("child_added", function(childSnapshot) {
-            //     console.log((childSnapshot.val().name) + (childSnapshot.val().zipcode)); // Log everything that's coming out of snapshot
-            // });
-
-            // });
+            dataRef.ref().on("child_added", function(childSnapshot) {
+                console.log((childSnapshot.val().name) + (childSnapshot.val().zipcode)); // Log everything that's coming out of snapshot
+            });
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+        
         }); // file done
     </script>
 

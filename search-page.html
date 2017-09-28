@@ -49,7 +49,11 @@
                             <div class="form-group">      
                                 <input id="searchConcerts-input" class="form-control" type="text" placeholder="Find Music Near You"  style="width:250px; height:40px; margin: 0 auto">
                                 <br/>
-                                <button id="findConcert" class="btn btn-info btn-search" type="button" data-target="#" style="background-color:#3B45A8; border-color:#6d75f0">Search</button>                                
+                                <a href="pages/venuesList.html">
+                                    <button id="findConcert" class="btn btn-info btn-search" type="button" style="background-color:#3B45A8; border-color:#6d75f0">Search</button>
+                                </a>
+<!-- 
+                                <button id="findConcert" class="btn btn-info btn-search" type="button" style="background-color:#3B45A8; border-color:#6d75f0" onclick="pageFunction()">Search</button> -->                                
                             </div>
                         </form>           
                     </div>
@@ -119,9 +123,22 @@
 
     <script type="text/javascript">
     $(document).ready(function() {
-        console.log("paged = loaded")
+        console.log("paged = loaded");
 
-        console.log("This is the sessionStorage : " + sessionStorage.getItem("zip"));
+    /////REMOVE SOON --> THIS IS ONLY TO TES SESSION STORAG"//////////
+        // function pageFunction() {
+        //     window.location.href = "pages/venuesList.html";
+        // }
+
+
+        // fixes behavior of drop-downs within drop-downs 
+        // $('.dropdown-submenu a.submenu').on("click", function(event){
+        //     $(this).next('ul').toggle();
+        //     event.stopPropagation();
+        //     event.preventDefault();
+        // });
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////// 
         
@@ -131,16 +148,53 @@
 
 //////////////////////////////////////////////////////////////////////////////////////// 
 
- // DYNAMICALL UPDATE THESE USING THE EVENTBRITE API!!!
+    //USE THIS SESSION STORAGE to channel the zip location needed for the EventBrite API.
+        console.log("This is the sessionStorage : " + sessionStorage.getItem("zip"));
 
+        var zipLocator;
+        function getZipFromStorage() {
+            var zipLocator = sessionStorage.getItem("zip");
 
-// <IMG> CAROUSEL PICS: id="firstCarouselPic"
-// <H3> ARTIST LABEL: id="firstArtistLabel">First Artist Label
-// <P>> VENUE LABEL: id="firstVenueLabel">First Venue Label   
-
-
+            if (zipLocator === null) {
+                zipLocator = "78701"; //Default set as downttown Austin---> can we set it off of IP adr though?
+            } 
+            else {
+                return zipLocator;
+            };
+        };
+        console.log(zipLocator);
 
     });
+
+    // DYNAMICALLY UPDATE THESE USING THE EVENTBRITE API!!!
+// --------------------------------------------------------------------------------
+    // <IMG> CAROUSEL PICS: id="firstCarouselPic"
+    // <H3> ARTIST LABEL: id="firstArtistLabel">First Artist Label
+    // <P>> VENUE LABEL: id="firstVenueLabel">First Venue Label   
+//--------------------------------------------------------------------------------
+var getEvents = function () {
+    $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": queryEventbrite,
+      "method": "GET",
+    };
+
+    $.ajax(settings).done(function (data) {
+        if (data.events.length) {
+            for (i = 0; i < data.events.length; i++) {
+                // defining variables for all filters
+                var eventName = data.events[i].name.text;
+                var eventLogo = data.events[i].logo.original.url;
+                var description = "Description: " + data.events[i].description.text;
+                var venueName = "Venue: " + data.events[i].venue.name;
+            };
+        }
+    });
+};
+
 
 
     </script>

@@ -168,9 +168,9 @@ img.d-block.carousel-pic {
 }
 
 /*	added some styling for list page/search results - J.J. */
-.container {
-	background-color: #2C75D6;
-	max-width:60%;
+.container-fluid.page3 {
+/*	background-color: #2C75D6;*/
+	background-color: #3B45A8;
 }
 
 .header p {
@@ -192,22 +192,13 @@ img.d-block.carousel-pic {
     padding-bottom: 10px;
 }
 
-.back img {
-	width:30px;
-	height:30px;
-}
-
-.home img {
-	width:30px;
-	height:30px;
-}
-
 .dropdown {
 	display:inline-block;
 }
 
 .dropdowns {
 	margin-bottom:20px;
+	margin-top: 30px;
 }
 
 .dropdown a {
@@ -237,12 +228,50 @@ img.d-block.carousel-pic {
 .textData {
 	background-color:black;
 	opacity:0.8;
-	border-radius: 10px;
+	border-radius: 3px;
 	padding:10px;
 	font-size:18px;
 	color: white;
+	position: relative;
+    height: 46px;
+    top: 155px;
 }
 
 .updateResults {
 	margin-bottom:20px;
+}
+
+p#displayLocation {
+	font-size: 2rem;
+	font-family: 'Oxygen', sans-serif;
+	color: #FBF6F6;
+}
+
+p#displayDate {
+	font-size: 2rem;
+	font-family: 'Oxygen', sans-serif;
+	color: #FBF6F6;
+}
+
+a.btn.dropdown-toggle {
+	font-size: 22px;
+	font-family: 'Oxygen', sans-serif;
+	color: #FBF6F6;
+}
+
+img.navButton {
+	width: 75px;
+	height: 75px;
+}
+
+img.back {
+	position: fixed;
+	left: 50px;
+	top: 50px;
+}
+
+img.home {
+	position: fixed;
+	right: 50px;
+	top: 45px;
 }

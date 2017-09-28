@@ -125,21 +125,6 @@
     $(document).ready(function() {
         console.log("paged = loaded");
 
-    /////REMOVE SOON --> THIS IS ONLY TO TES SESSION STORAG"//////////
-        // function pageFunction() {
-        //     window.location.href = "pages/venuesList.html";
-        // }
-
-
-        // fixes behavior of drop-downs within drop-downs 
-        // $('.dropdown-submenu a.submenu').on("click", function(event){
-        //     $(this).next('ul').toggle();
-        //     event.stopPropagation();
-        //     event.preventDefault();
-        // });
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////// 
         
         $('.carousel').data('interval="20"'); //Is this interval working?!
@@ -164,7 +149,7 @@
         };
         console.log(zipLocator);
 
-    });
+
 
     // DYNAMICALLY UPDATE THESE USING THE EVENTBRITE API!!!
 // --------------------------------------------------------------------------------
@@ -172,30 +157,38 @@
     // <H3> ARTIST LABEL: id="firstArtistLabel">First Artist Label
     // <P>> VENUE LABEL: id="firstVenueLabel">First Venue Label   
 //--------------------------------------------------------------------------------
-var getEvents = function () {
-    $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
 
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": queryEventbrite,
-      "method": "GET",
-    };
+       fixes behavior of drop-downs within drop-downs 
+        $('.dropdown-submenu a.submenu').on("click", function(event){
+            $(this).next('ul').toggle();
+            event.stopPropagation();
+            event.preventDefault();
+        });
 
-    $.ajax(settings).done(function (data) {
-        if (data.events.length) {
-            for (i = 0; i < data.events.length; i++) {
-                // defining variables for all filters
-                var eventName = data.events[i].name.text;
-                var eventLogo = data.events[i].logo.original.url;
-                var description = "Description: " + data.events[i].description.text;
-                var venueName = "Venue: " + data.events[i].venue.name;
+        var getEvents = function () {
+            $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
+
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": queryEventbrite,
+              "method": "GET",
             };
-        }
+
+            $.ajax(settings).done(function (data) {
+                if (data.events.length) {
+                    for (i = 0; i < data.events.length; i++) {
+                        // defining variables for all filters
+                        var eventName = data.events[i].name.text;
+                        var eventLogo = data.events[i].logo.original.url;
+                        var description = "Description: " + data.events[i].description.text;
+                        var venueName = "Venue: " + data.events[i].venue.name;
+                    };
+                }
+            });
+        };
+
     });
-};
-
-
 
     </script>
 

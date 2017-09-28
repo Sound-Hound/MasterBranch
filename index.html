@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge"> <!-- !!!! REMEMEBER THESE META TAG INPUTS.... !!!! -->
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- !!!! REMEMEBER THESE META TAG INPUTS.... !!!! -->
-    <title>Sound Hound - find music venues and live concerts near you!</title>
+    <title>Sound Hound - Disocver live music near you!</title>
     <!-- link to custom css -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <!-- link to bootstrap styling -->
@@ -57,12 +57,12 @@
                                             <form>
                                                 <div class="form-group">
                                                     <label for="recipient-zip" class="form-control-label">Enter Zip Code:</label>
-                                                    <input id="recipient-zip" type="text" class="form-control" style="width:30%; margin:0 auto">
+                                                    <input id="recipient-zip" type="text" pattern="[0-9]{5}" class="form-control" placeholder="78701" style="width:30%; margin:0 auto">
                                                 </div>
                                             </form>
                                         </div>                                          
                                         <div class="modal-footer">
-                                            <button type="button" class="submit btn btn-primary" style="background-color:#1a1592; height:40px">Start Your Hunt</button>
+                                            <button id="zipButton" class="submit btn btn-primary" type="button" style="background-color:#1a1592; height:40px">Start Your Hunt</button>
                                         </div>
                                     </div>
                                 </div>
@@ -81,10 +81,7 @@
     </div>
 
     <script type="text/javascript">
-    
-    // $("#modalButton").on(click(function(event) {
-    //     var modalPage = $("<div>")
-    // });)
+
 
     var name = "";
     var zipcode = "";
@@ -123,6 +120,12 @@
 
             dataRef.ref().on("child_added", function(childSnapshot) {
                 console.log((childSnapshot.val().name) + (childSnapshot.val().zipcode)); // Log everything that's coming out of snapshot
+            });
+
+
+   // RECORD THE ZIP ----> LOCAL STORAGE!!!!
+            $("#zipButton").on(click(function(event) {           
+                // RECORD THE ZIP ----> LOCAL STORAGE!!!!
             });
 
         });

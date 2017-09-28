@@ -90,14 +90,14 @@
     <script type="text/javascript">
 
 ///////////////////////// FIREBASE DATATBASE SET-UP ////////////////////////////////////
-        var config = {
-            apiKey: "AIzaSyCLbEjKvRPiZdO3I6ADlExj_N0ZD60nATk",
-            authDomain: "recent-user-with-all-users.firebaseapp.com",
-            databaseURL: "https://recent-user-with-all-users.firebaseio.com",
-            storageBucket: "recent-user-with-all-users.appspot.com"
-        };
-        firebase.initializeApp(config);
-        var dataRef = firebase.database();
+        // var config = {
+        //     apiKey: "AIzaSyCLbEjKvRPiZdO3I6ADlExj_N0ZD60nATk",
+        //     authDomain: "recent-user-with-all-users.firebaseapp.com",
+        //     databaseURL: "https://recent-user-with-all-users.firebaseio.com",
+        //     storageBucket: "recent-user-with-all-users.appspot.com"
+        // };
+        // firebase.initializeApp(config);
+        // var dataRef = firebase.database();
 
 
 //////////////////////////// MODAL LOGIC //////////////////////////////////////
@@ -174,24 +174,7 @@
                 
                 zipFunction();                       
             });
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-            /// FIREBASE RECORDING: //////
-
-            dataRef = firebase.database(); //Initiating an AJAX request here (and then do the updating in a callback).
-            dataRef.ref().push({
-                name: name,
-                zipcode: zipcode,
-            });
-
-            dataRef.ref().on("child_added", function(childSnapshot) {
-                console.log((childSnapshot.val().name) + (childSnapshot.val().zipcode)); // Log everything that's coming out of snapshot
-            });
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-        
+            
         }); // file done
     </script>
 

@@ -57,12 +57,17 @@
                                             <form>
                                                 <div class="form-group">
                                                     <label for="recipient-zip" class="form-control-label">Enter Zip Code:</label>
-                                                    <input id="recipient-zip" type="text" pattern="[0-9]{5}" class="form-control" placeholder="78701" style="width:30%; margin:0 auto">
+                                                    <input id="recipient-zip" type="text" pattern="[0-9]{5}" class="form-control" placeholder="78701" style="width:30%; margin:0 auto">          
                                                 </div>
+                                                <p id="errorMessage"></p>
                                             </form>
                                         </div>                                          
                                         <div class="modal-footer">
                                             <button id="zipButton" class="submit btn btn-primary" type="button" style="background-color:#1a1592; height:40px">Start Your Hunt</button>
+
+                                           <!-- <a href="search-page.html">
+                                                <button id="zipButton" class="submit btn btn-primary" type="button" style="background-color:#1a1592; height:40px">Start Your Hunt</button>
+                                            </a> -->
                                         </div>
                                     </div>
                                 </div>
@@ -82,55 +87,129 @@
 
     <script type="text/javascript">
 
+///////////////////////// FIREBASE DATATBASE SET-UP ////////////////////////////////////
+        var config = {
+            apiKey: "AIzaSyCLbEjKvRPiZdO3I6ADlExj_N0ZD60nATk",
+            authDomain: "recent-user-with-all-users.firebaseapp.com",
+            databaseURL: "https://recent-user-with-all-users.firebaseio.com",
+            storageBucket: "recent-user-with-all-users.appspot.com"
+        };
+        firebase.initializeApp(config);
+        var dataRef = firebase.database();
 
-    var name = "";
-    var zipcode = "";
+////////////////////////////////////////////////////////////////////////////////////////  
+    
+    // function createGifButton (searchArray, gifClass, searchNo, gifPostArea) {
+    //     $(gifPostArea).empty();
 
-    var config = {
-        apiKey: "AIzaSyCLbEjKvRPiZdO3I6ADlExj_N0ZD60nATk",
-        authDomain: "recent-user-with-all-users.firebaseapp.com",
-        databaseURL: "https://recent-user-with-all-users.firebaseio.com",
-        storageBucket: "recent-user-with-all-users.appspot.com"
-    };
-    firebase.initializeApp(config);
-    var dataRef = firebase.database();
+    //     for (var i = 0; i < searchArray.length; i++) {
+    //             var button = $("<button>");
+    //             button.addClass(gifClass);
+    //             button.attr("data-type", searchArray[i]); //this assigns an attribue called 'data-type' with a value that ==== the value of the current index in the sesarchTermArray, which in this case is a superhero name (ie. batman).
+    //             button.attr("data-num", searchNo)
+    //             button.text(searchArray[i]); //this displays the value (in this case === a superhero name) of the item in the area.
+    //             $(gifPostArea).append(button);
+    //         }
+    //     };
+   
 
+    // createGifButton(searchTermArray, "searchedGif", searchTermNum, "#searchedGif");
+    // $("#searchBox").on("click", function() { //This resets the search box each time someone clicks inside it!
+    //     $("#searchBox").val("");
+    //     $("#gifAmount").val("");
+    // });
 
-    $(document).ready(function() {
-        console.log("paged = loaded")
+//////////////////////////// REAL JS - LOGIC //////////////////////////////////////
+       
+        $(document).ready(function() {
+            console.log("paged = loaded");
+            
+            var errorMessage;
+            var searchPage = "search-page.html";
+            var zipInput = $("#recipient-zip").val();
+            console.log(zipInput);
+                
+            var zipcode = Array.from(zipInput);
+            console.log(zipcode);
 
-        $('#modalPage').on('show.bs.modal', function() {
-            event.preventDefault();
-
-            console.log("modal test")
-
-            name = $('<input type="text">').val();
-            $(".modal-title").append(name);
-
-            zipcode = $('<input type="number">').val();
-            $('.modal-body input').append(zipcode);
-            console.log("create")
-
-
-            dataRef = firebase.database(); //Initiating an AJAX request here (and then do the updating in a callback).
-            dataRef.ref().push({
-                name: name,
-                zipcode: zipcode,
+            $("#recipient-zip").on("click", function() { 
+                console.log("clicked-input");
+                $("#recipient-zip").val("");
+                $("#errorMessage").empty();
             });
 
-            dataRef.ref().on("child_added", function(childSnapshot) {
-                console.log((childSnapshot.val().name) + (childSnapshot.val().zipcode)); // Log everything that's coming out of snapshot
+
+            function zipFunction() {
+                errorMessage = $("#errorMessage");
+                zipInput = $("#recipient-zip").val();
+                console.log(zipInput);
+
+                try { 
+                    if (zipInput == "") {
+                        console.log("empty");
+                        $("#errorMessage").html("<p> Can't start a search without a location. <br/> Type in a local zip so we can start your search party! </p>");
+                        throw "empty";
+                    } 
+                    if (isNaN(zipInput)) {
+                        console.log("not a number");
+                        $("#errorMessage").html("<p> Looks like that's not a proper heading. <br/> Type in a valid 5 digit zip so we can start your search party! </p>");
+                        throw "not a number";
+                    }
+                    if (zipInput.length > 5) {
+                        console.log("long");
+                        $("#errorMessage").html("<p> Looks like that heading is a bit long. <br/> Type in a valid 5 digit zip so we can start your search party! </p>");
+                        throw "too many characters";
+                    }
+                    if (zipInput.length < 5) {
+                        console.log("too short");
+                        $("#errorMessage").html("<p> Looks like that heading is a bit short. <br/> Type in a valid 5 digit zip so we can start your search party! </p>");
+                        throw "too little characters";
+                    }
+                    else {
+                       console.log("search-page re-orientation nec")
+                       // RECORD THE ZIP ----> LOCAL STORAGE!!!!
+                       window.location.href = searchPage;
+                    }
+                }
+                catch(err) {
+                    console.log("Input is " + err);
+                }
+            };
+            
+            $("#zipButton").on("click", function() { 
+                event.preventDefault();
+
+                searchPage = "search-page.html";
+
+                zipInput = $("#recipient-zip").val();
+                console.log(zipInput);
+                
+                zipFunction();                       
             });
+            
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+            ///// FIREBASE RECORDING: //////
+            // zipcode = $('<input type="number">').val();
+            // $('.modal-body input').append(zipcode);
+            // console.log("create")
 
 
-   // RECORD THE ZIP ----> LOCAL STORAGE!!!!
-            $("#zipButton").on(click(function(event) {           
-                // RECORD THE ZIP ----> LOCAL STORAGE!!!!
-            });
+            // dataRef = firebase.database(); //Initiating an AJAX request here (and then do the updating in a callback).
+            // dataRef.ref().push({
+            //     name: name,
+            //     zipcode: zipcode,
+            // });
 
-        });
-    });
+            // dataRef.ref().on("child_added", function(childSnapshot) {
+            //     console.log((childSnapshot.val().name) + (childSnapshot.val().zipcode)); // Log everything that's coming out of snapshot
+            // });
 
+            // });
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+        }); // file done
     </script>
 
 </body>

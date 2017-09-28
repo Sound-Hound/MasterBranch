@@ -118,7 +118,6 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 
 .carousel-item img {
 	margin: 0 auto;
-	/*	display: block;*/
 }
 
 .imgIcon {
@@ -130,6 +129,7 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 .btn-search {
 	width: 250px;
 	height: 40px;
+	background-color: #3B45A8;
 }
 
 .carousel-item {

@@ -1,78 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- test -->
-
 <head>
-  <meta charset="utf-8">
-  <title>Sound Hound - find music venues and live concerts near you!</title>
-  <!-- link to custom css -->
-  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-  
-  <!-- link to bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <!-- link to bootstrap -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-  
-  <!-- link to jquery -->
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-  <!-- link to js -->
-  <script type="text/javascript" src="./assets/javascript/app.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sound Hound - Disocver live music near you!</title>
+
+    <!-- link to custom css -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <!-- link to bootstrap styling -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono" rel="stylesheet">
+    
+    <!-- link to jquery script -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+   <!-- link to bootstrap JS plugin -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- link to firebase script -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <!-- link to local js  file-->
+    <script type="text/javascript" src="./assets/javascript/app.js"></script>
 </head>
 
+
 <body>
-    
-<!-- header -->
-<div class="container">
-  
-</div>
+    <div id="fullContainer" class="container-fluid page1">
+        <div id="mainPageContainer" class="container-fluid">
 
-<!-- main body -->
-<div class="container">
+            <div id="pageHeader" class="container-fluid full">
+                <article>
+                    <div class="row">
+                        <div class="col-md-12"> 
+                            <header>
+                                <h1 id="mainTitle" class="page-header text-center page1">Sound Hound</h1>  
+                                <div id="underline"></div>
+                            </header>                  
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button id="modalButton" type="button" class="btn btn-info btn btn-lg" data-toggle="modal" data-target="#modalPage" style="font-size:24px">Discover Sounds</button>
+                             
+                            <div id="modalPage" class="modal fade" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" style="color:#e3e4f3; font-size:32px">&times;</span> <!-- FYI: "&times" ==> the "x" sign -->
+                                            </button>
+                                            <h3 id="exampleModalLabel" class="modal-title">See what's nearby...</h3>
+                                        </div>
 
-  <!-- search venues -->  
-  <div class="searchVenues">
-    <form id="searchVenues-form">
-        <label for="searchVenues-input"></label>
-        <input type="text" id="searchVenues-input" value="test input"><br>
-        <input id="findVenue" type="submit" value="Find a Venue">
-    </form>
-  </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="recipient-zip" class="form-control-label">Enter Zip Code:</label>
+                                                    <input id="recipient-zip" type="text" pattern="[0-9]{5}" class="form-control" placeholder="78701" style="width:30%; margin:0 auto">          
+                                                </div>
+                                                <p id="errorMessage"></p>
+                                            </form>
+                                        </div>                                          
+                                        <div class="modal-footer">
+                                            <button id="zipButton" class="submit btn btn-primary" type="button" style="background-color:#1a1592; height:40px">Start Your Hunt</button>
 
-  <!-- search bands/concerts -->
-  <div class="searchConcerts">
-    <form id="searchConcerts-form">
-        <label for="searchConcerts-input"></label>
-        <input type="text" id="searchConcerts-input" value="test input"><br>
-        <input id="findConcert" type="submit" value="Find a Concert">
-    </form>
-  </div>
+                                           <!-- <a href="search-page.html">
+                                                <button id="zipButton" class="submit btn btn-primary" type="button" style="background-color:#1a1592; height:40px">Start Your Hunt</button>
+                                            </a> -->
 
-  <!-- something kewl -->
-  <div class="kewl">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div id="bottomTextArea" class="col-sm-12">
+                            <h3 id="bottomText" class="text-center">We'll lead you to <br/> your next adventure!</h3>
+                        </div>                 
+                    </div>
+                </article>
+            </div>
 
-  </div>
+        </div>
+    </div>
 
-  <!-- search by zip -->
-  <div class="searchByZip">
-    <form id="searchByZip-form">
-        <label for="searchByZip-input"></label>
-        <input type="text" id="searchByZip-input" value="test input"><br>
-        <input id="findTrends" type="submit" value="Top Trends Near You">
-    </form>
-  </div>
+    <script type="text/javascript">
 
-</div>
+///////////////////////// FIREBASE DATATBASE SET-UP ////////////////////////////////////
+        // var config = {
+        //     apiKey: "AIzaSyCLbEjKvRPiZdO3I6ADlExj_N0ZD60nATk",
+        //     authDomain: "recent-user-with-all-users.firebaseapp.com",
+        //     databaseURL: "https://recent-user-with-all-users.firebaseio.com",
+        //     storageBucket: "recent-user-with-all-users.appspot.com"
+        // };
+        // firebase.initializeApp(config);
+        // var dataRef = firebase.database();
 
-<!-- footer -->
-<div class="container">
-  <div class="footer">
 
-  </div>
-</div>
+//////////////////////////// MODAL LOGIC //////////////////////////////////////
+       
+        $(document).ready(function() {
+            console.log("paged = loaded");
+            
+            var errorMessage;
+            var searchPage = "search-page.html";
+            var zipInput = $("#recipient-zip").val();
+            console.log(zipInput);
+                
+            var zipcode = Array.from(zipInput);
+            console.log(zipcode);
+
+            $("#recipient-zip").on("click", function() { 
+                console.log("clicked-input");
+                $("#recipient-zip").val("");
+                $("#errorMessage").empty();
+            });
+
+
+            function zipFunction() {
+                errorMessage = $("#errorMessage");
+                zipInput = $("#recipient-zip").val();
+                console.log(zipInput);
+
+                try { 
+                    if (zipInput == "") {
+                        console.log("empty");
+                        $("#errorMessage").html("<p> Can't start a search without a location. <br/> Type in a local zip so we can start your search party! </p>");
+                        throw "empty";
+                    } 
+                    if (isNaN(zipInput)) {
+                        console.log("not a number");
+                        $("#errorMessage").html("<p> Looks like that's not a proper heading. <br/> Type in a valid 5 digit zip so we can start your search party! </p>");
+                        throw "not a number";
+                    }
+                    if (zipInput.length > 5) {
+                        console.log("long");
+                        $("#errorMessage").html("<p> Looks like that heading is a bit long. <br/> Type in a valid 5 digit zip so we can start your search party! </p>");
+                        throw "too many characters";
+                    }
+                    if (zipInput.length < 5) {
+                        console.log("too short");
+                        $("#errorMessage").html("<p> Looks like that heading is a bit short. <br/> Type in a valid 5 digit zip so we can start your search party! </p>");
+                        throw "too little characters";
+                    }
+                    else {
+                       console.log("err: search-page SHOULD be working!");
+
+                       // RECORD THE ZIP ----> LOCAL STORAGE!!!!
+                       zipInput.trim();
+                       sessionStorage.clear();
+                       sessionStorage.setItem("zip", zipInput);
+                       console.log("This is the sessionStorage : " +sessionStorage.getItem("zip"));
+                       
+                       $("#recipient-zip").val("");
+                       window.location.href = searchPage;
+                    }
+                }
+                catch(err) {
+                    console.log("Input is " + err);
+                }
+            };
+            
+            $("#zipButton").on("click", function() { 
+                event.preventDefault();
+
+                searchPage = "search-page.html";
+
+                zipInput = $("#recipient-zip").val();
+                console.log(zipInput);
+                
+                zipFunction();                       
+            });
+            
+        }); // file done
+    </script>
 
 </body>
 </html>

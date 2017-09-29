@@ -9,16 +9,14 @@
     <!-- link to custom css -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <!-- link to bootstrap styling -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts Link -->
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono" rel="stylesheet">
     
     <!-- link to jquery script -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-     <!-- link to popper js script-->
-    <script scr="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <!-- link to bootstrap script-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+   <!-- link to bootstrap JS plugin -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- link to firebase script -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <!-- link to local js  file-->
@@ -27,61 +25,67 @@
 
 
 <body>
-    <div id="fullContainer" class="container-fluid">
+    <div id="fullContainer" class="container-fluid page1">
         <div id="mainPageContainer" class="container-fluid">
-            <div id="pageHeader" class="container-fluid">
-                <div class="jumbotron">
+
+            <div id="pageHeader" class="container-fluid full">
+                <article>
                     <div class="row">
                         <div class="col-md-12"> 
-                            <div class="page-header">
-                                <h1 id="mainTitle" class="page-header text-center">Sound Hound</h1>  
+                            <header>
+                                <h1 id="mainTitle" class="page-header text-center page1">Sound Hound</h1>  
                                 <div id="underline"></div>
-                            </div>                  
+                            </header>                  
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <button id="modalButton" type="button" class="btn btn-info btn btn-lg" data-toggle="modal" data-target="#modalPage">Discover Sounds Nearby</button>
-                        </div>                 
+                            <button id="modalButton" type="button" class="btn btn-info btn btn-lg" data-toggle="modal" data-target="#modalPage" style="font-size:24px">Discover Sounds</button>
+                             
+                            <div id="modalPage" class="modal fade" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" style="color:#e3e4f3; font-size:32px">&times;</span> <!-- FYI: "&times" ==> the "x" sign -->
+                                            </button>
+                                            <h3 id="exampleModalLabel" class="modal-title">See what's nearby...</h3>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="recipient-zip" class="form-control-label">Enter Zip Code:</label>
+                                                    <input id="recipient-zip" type="text" class="form-control" style="width:30%; margin:0 auto">
+                                                </div>
+                                            </form>
+                                        </div>                                          
+                                        <div class="modal-footer">
+                                            <button type="button" class="submit btn btn-primary" style="background-color:#1a1592; height:40px">Start Your Hunt</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="row">
                         <div id="bottomTextArea" class="col-sm-12">
-                            <h3 id="bottomText" class="text-center">Find your next live experience <br/> through Sound Hound.</h3>
+                            <h3 id="bottomText" class="text-center">We'll lead you to <br/> your next adventure!</h3>
                         </div>                 
                     </div>
-                </div>
+                </article>
             </div>
 
-    <!-- 1a) Modal Page: Modal -->
-            <div class="container">
-                <div id="modalPage" class="modal fade" tabindex="-1" role="dialog"><!--  aria-labelledby="exampleModalLabel" aria-hidden="true" +++ test out the non-fading... -->
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 id="exampleModalLabel" class="modal-title">See what's nearby!</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span> <!-- FYI: "&times" ==> the "x" sign -->
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="recipient-zip" class="form-control-label">Enter Zip Code:</label>
-                                        <input type="text" class="form-control" id="recipient-zip">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
     <script type="text/javascript">
-    //Modal Page: Modal
+    
+    // $("#modalButton").on(click(function(event) {
+    //     var modalPage = $("<div>")
+    // });)
+
     var name = "";
     var zipcode = "";
 

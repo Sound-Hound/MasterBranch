@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sound Hound - Upcoming Events</title>
+  <!-- link to jquery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- link to bootstrap JS plugin -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Link to Moment.js -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- link to bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <!-- link to custom css -->
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<!-- header -->
+<div class="container-fluid page3">
+    <div class="header"> 
+        <h1>Upcoming Events</h1>
+        <div class="container displayDiv">
+            <p id="displayLocation"></p>
+            <p id="displayDate"></p>
+        </div>
+    </div>
+    <div class="navArea">
+        <!-- back button -->
+        <a href="../search-page.html" class="back">
+          <img class="navButton back" src="../assets/images/back-button.png" alt="back-button">
+        </a>
+        <!-- home button -->
+        <a href="../index.html" class="home">
+          <img class="navButton home" src="../assets/images/home-button.png" alt="home-button">
+        </a>     
+    </div>
+</div>
+
+<!-- search results -->
+<div class="container-fluid page3">
+
+  <div class="container dropdowns">
+    <!-- sort results drop-down -->
+    <div class="dropdown sortBy">
+        <a class="btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort By
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a id="sortByDistance" href="#">Distance</a></li>
+            <li><a id="sortByDate" href="#">Date</a></li>
+        </ul>
+    </div>
+    <!-- filter results drop-down -->
+    <div class="dropdown filter">
+        <a class="btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter Results
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <!-- by distance -->
+            <li class="dropdown-submenu" id="byDistance">
+              <a class="submenu" tabindex="-1" href="#">
+                Location Within
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a id="1mile" href="#">1 mile</a></li>
+                <li><a id="5miles" href="#">5 miles</a></li>
+                <li><a id="10miles" href="#">10 miles</a></li>
+                <li><a id="20miles" href="#">20 miles</a></li>
+              </ul>
+            </li>
+            <!-- by music genre -->
+            <li class="dropdown-submenu" id="byGenre">
+              <a class="submenu" tabindex="-1" href="#">
+                Music Genre
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class="alternative" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="alternativeCheck">
+                    <span>Alternative</span>
+                </label></a></li>
+                <li><a class="bluesJazz" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="bluesJazzCheck">
+                    <span>Blues/Jazz</span>
+                </label></a></li>
+                <li><a class="classical" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="classicalCheck">
+                    <span>Classical</span>
+                </label></a></li>
+                <li><a class="country" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="countryCheck">
+                    <span>Country</span>
+                </label></a></li>
+                <li><a class="electronic" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="electronicCheck">
+                    <span>Electronic</span>
+                </label></a></li>
+                <li><a class="folk" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="folkCheck">
+                    <span>Folk</span>
+                </label></a></li>
+                <li><a class="hipHopRap" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="rapCheck">
+                    <span>Hip-Hop/Rap</span>
+                </label></a></li>
+                <li><a class="indie" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="indieCheck">
+                    <span>Indie</span>
+                </label></a></li>
+                <li><a class="latin" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="latinCheck">
+                    <span>Latin</span>
+                </label></a></li>
+                <li><a class="metal" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="metalCheck">
+                    <span>Metal</span>
+                </label></a></li>
+                <li><a class="opera" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="operaCheck">
+                    <span>Opera</span>
+                </label></a></li>
+                <li><a class="pop" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="popCheck">
+                    <span>Pop</span>
+                </label></a></li>
+                <li><a class="rAndB" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="rAndBCheck">
+                    <span>Rhythm and Blues</span>
+                </label></a></li>
+                <li><a class="reggae" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="reggaeCheck">
+                    <span>Reggae</span>
+                </label></a></li>
+                <li><a class="religious" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="religiousCheck">
+                    <span>Religious</span>
+                </label></a></li>
+                <li><a class="rock" href="#"><label>
+                    <input type="checkbox" class="custom-control-input" id="rockCheck">
+                    <span>Rock</span>
+                </label></a></li>
+              </ul>
+            </li>
+            <!-- by cost (free or paid) -->
+            <li><a href="#">
+                <label class="byCost">
+                    <input type="checkbox" id="freeMusicCheck" class="custom-control-input">
+                    <span class="freeMusic">Free Music Only</span>
+                </label>
+            </a></li>
+        </ul>
+    </div>
+  </div>
+
+    <!--
+    <div class="updateResults">
+        <button type="button" class="btn btn-secondary" id="updateResults">Update Results</button>
+    </div> 
+    <div class="nowShowing">
+      <p>Now showing results...</p>
+      <ul id="nowshowing">
+        applied filters show here 
+      </ul>
+    </div> -->
+
+    <div id="searchResults">
+    <!-- appended info goes here --> 
+    </div>  
+    
+    <div id="eventPage">
+    <!-- appended info goes here --> 
+    </div>
+    
+</div>
+
+
+<!-- footer -->
+<div class="container">
+        
+</div>
+
+<script>
+// takes variable from search page - firebase or local storage?
+    //This is where we can use the session storage!!
+console.log("This is the sessionStorage : " + sessionStorage.getItem("zip"));
+var zipLocator = sessionStorage.getItem("zip");
+
+function getZipFromStorage() {
+    if (zipLocator === null) {
+        zipLocator = "78701"; //Can we set a default off of the IP Address?
+    } 
+    else {
+        return zipLocator;
+    }
+};
+console.log(zipLocator);
+
+var userLocation = zipLocator; 
+console.log(userLocation);
+
+
+$(document).ready(function(){
+
+$("#displayLocation").html("Zip: " + userLocation); // updating html based on selectedLocation
+$("#displayDate").html("Today: " + moment().format("MMM Do YY")); // updating html based on moment js    
+
+// fixes behavior of drop-downs within drop-downs 
+$('.dropdown-submenu a.submenu').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+});
+
+// array holding all currently selected music genres 
+var selectedGenres = []; // potential bug - if subcategories is empty it behaves the same as if all genres were selected, but to do otherwise results in weird non-intuitive functionality unless we add other features (e.g. a check all and uncheck all option)
+var allSearchResults = [] // array temporarily holding all search results
+
+// default filters
+var categories = 103; // music events - the user cannot change this
+
+// var address = "Austin, TX"; // this is either their zip code or address generated by IP
+
+var address = userLocation;
+var locationWithin = "10mi";
+var sortby = "distance"; // or date
+
+// optional filters
+var subcategories = selectedGenres; // music subcategory/genre (intially set to include all)
+var genreSelected = false; // set to true if a genre is selected
+
+var cost; // "free" or "paid" - parameter is price="free"
+var isFree = false;
+var search = ""; // parameter is q='example'
+
+// function that updates queryEventbrite query based on selected genres
+function updateQueryGenres () {
+    var searchGenre = "&subcategories=" + subcategories;
+    queryEventbrite = queryEventbrite + searchGenre; // adds subcategories to query
+};
+
+function updateCost () { // function updating queryEventbrite whether the search is free or paid
+    if (isFree) {
+        cost = "free";
+        var onlyFree = "&price=" + cost;
+        queryEventbrite = queryEventbrite + onlyFree;
+    } else {
+        cost = "free, paid";
+        var freePaid = "&price=" + cost;
+        queryEventbrite = queryEventbrite + freePaid;
+    }
+    getEvents();
+};
+
+function updateDistance () { // function updating queryEventbrite based on distance filter
+    var newDistance = "&location.within=" + locationWithin;
+    queryEventbrite = queryEventbrite + newDistance;
+    getEvents();
+};
+
+function updateSortBy () { // function updating queryEventbrite based on sortby
+    var newSort = "&sort_by=" + sortby;
+    queryEventbrite = queryEventbrite + newSort;
+    getEvents();
+};
+
+function hideEventPages() { // function hiding eventPages
+    for (k=0; k < allSearchResults.length; k++){
+        $("#event" + k).hide();
+        $(".dropdowns").show();
+        $("#searchResults").show();
+    };
+};
+
+// *** getting data from eventbrite API ***
+var token = "DNOQE2ODIDZCCHZJTBUS"; // setting token value
+// variable defining default query
+var defaultQuery = "https://www.eventbriteapi.com/v3/events/search/?token=" + token + "&categories=" + categories + "&location.address=" + address + "&location.within=" + locationWithin + "&sort_by=" + sortby + "&expand=venue";
+
+var queryEventbrite = defaultQuery; // setting query url
+
+// defining function to perform AJAX call
+var getEvents = function () {
+    $("#eventPage").empty(); // empties eventPage to avoid duplicating data after each search
+    $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
+    allSearchResults = []; // empties array to avoid duplicating data after each search
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": queryEventbrite,
+  "method": "GET",
+  "headers": {},
+}
+
+$.ajax(settings).done(function (data) {
+  if (data.events.length) {
+    for (i = 0; i < data.events.length; i++) {
+    // defining variables for all filters
+    var eventName = data.events[i].name.text;
+    var eventLogo = data.events[i].logo.original.url;
+    var description = "Description: " + data.events[i].description.text;
+    var venueName = "Venue: " + data.events[i].venue.name;
+    var venueAddress = "Location: " + data.events[i].venue.address.localized_address_display;
+    var startTime = "Start Time: " + data.events[i].start.local;
+    var genre; // converting genre ID to user-friendly text
+     if (data.events[i].subcategory_id === "3001") {
+        genre = "Music Genre: Alternative";
+     } else if (data.events[i].subcategory_id === "3002") {
+        genre = "Music Genre: Blues & Jazz";
+     } else if (data.events[i].subcategory_id === "3003") {
+        genre = "Music Genre: Classical"; 
+     } else if (data.events[i].subcategory_id === "3004") {
+        genre = "Music Genre: Country";
+     } else if (data.events[i].subcategory_id === "3006") {
+        genre = "Music Genre: Electronic";
+     } else if (data.events[i].subcategory_id === "3007") {
+        genre = "Music Genre: Folk";
+     } else if (data.events[i].subcategory_id === "3008") {
+        genre = "Music Genre: Hip Hop / Rap";  
+     } else if (data.events[i].subcategory_id === "3009") {
+        genre = "Music Genre: Indie";
+     } else if (data.events[i].subcategory_id === "3010") {
+        genre = "Music Genre: Latin";
+     } else if (data.events[i].subcategory_id === "3011") {
+        genre = "Music Genre: Metal";
+     } else if (data.events[i].subcategory_id === "3012") {
+        genre = "Music Genre: Opera";
+     } else if (data.events[i].subcategory_id === "3013") {
+        genre = "Music Genre: Pop"; 
+     } else if (data.events[i].subcategory_id === "3014") {
+        genre = "Music Genre: R&B";
+     } else if (data.events[i].subcategory_id === "3015") {
+        genre = "Music Genre: Reggae";
+     } else if (data.events[i].subcategory_id === "3016") {
+        genre = "Music Genre: Religious";
+     } else if (data.events[i].subcategory_id === "3017") {
+        genre = "Music Genre: Rock"; 
+     } else {
+        genre = "Music Genre: unknown";
+     }
+    var free;
+     if (data.events[i].is_free) {
+         free = "Free to attend!";
+     } else {
+         free = "Entry fees may apply";
+     };
+      
+    allSearchResults.push(eventName); // pushing names to allSearchResults array
+    // variables just to make the jquery appends easier to read. (Side Note: Raised Hands all the way - totally agree!! -- LJ!)
+    var startNewRow = "<div class='row searchResult' id='result" + i + "'><div class='col'><div class='textData'>";
+    var endNewRow = "</div></div></div>";
+      
+    // updating html display with results
+    $("#searchResults").append(startNewRow + eventName + endNewRow); // here is where we can choose what to display on the list page simply by adding variables already defined above
+    // updating each row with the corresponding background image
+    $("#result" + i).css("background-image", "url('" + eventLogo + "')");
+
+    // updating html in initially hidden event page
+    var startNewEvent = "<div class='row eventPage' id='event" + i + "'><div class='col'><div class='eventData'>";
+    var endNewEvent = "</div></div></div>";
+    $("#eventPage").append(startNewEvent + "<h1 class='eventName'>" + eventName + "</h1><br>" + "<p class='description'>" + description + "</p></br>" + "<p class='genre'>" + genre + "</p><br>" + "<p class='venueName'>" + venueName + "</p><br>" + "<p class='venueAddress'>" + venueAddress + "</p><br>" + "<p class='startTime'>" + startTime + "</p><br>" + "<p class='free'>" + free + "</p>"); // appending data to the eventPage
+    $("#event" + i).hide() // hiding the eventPage divs
+    $("#event" + i).css("background-image", "url('" + eventLogo + "')"); // adding logo again
+
+    }
+  } else {
+    $("#searchResults").text('No sound bites found! Broaden your search grounds or set your sights on new sounds - just use the filers menus above.'); // if no results are found given the current parameters/filters
+  }
+
+});
+
+//////////////////////////////////////////////////////////////////////
+
+// *** OPTIONAL ***
+    // This is where we would add code to display currently selected filters on the page. Given the current design, I think it adds too much clutter. The user can just click the filter by or sort by buttons to view active filters instead.
+
+            //$("#nowshowing").empty();
+            //$("#nowshowing").append("<li>Within " + locationWithin + " of " + address + "</li>");
+            //if (genreSelected) {
+            //  if (subcategories === 3002) {
+            //    $("#nowshowing").append("<li>Blues & Jazz</li>");
+            //  }
+            //}
+
+}; // end of getEvents function
+
+getEvents(); // initial call of function with default filters
+
+
+//////////////////////////////////////////////////////////////////////////
+// *** FILTERS FUNCTIONALITY ***
+// ------------------------------------
+// click handlers for music genres
+    // Note: it's repetitive - could probably be written more efficiently by defining some additional variables
+$("#alternativeCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3001"); // pushed the genre to the selectedGenres array
+    } else {
+        var index = selectedGenres.indexOf("3001");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1); // removes the genre from the selectedGenres array
+        }
+    }
+    updateQueryGenres(); // runs function to append subcategories to the query
+    getEvents(); // runs the query to Eventbrite
+});
+$("#bluesJazzCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3002");
+    } else {
+        var index = selectedGenres.indexOf("3002");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#classicalCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3003");
+    } else {
+        var index = selectedGenres.indexOf("3003");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#countryCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3004");
+    } else {
+        var index = selectedGenres.indexOf("3004");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#electronicCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3006");
+    } else {
+        var index = selectedGenres.indexOf("3006");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#folkCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3007");
+    } else {
+        var index = selectedGenres.indexOf("3007");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#rapCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3008");
+    } else {
+        var index = selectedGenres.indexOf("3008");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#indieCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3009");
+    } else {
+        var index = selectedGenres.indexOf("3009");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#latinCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3010");
+    } else {
+        var index = selectedGenres.indexOf("3010");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#metalCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3011");
+    } else {
+        var index = selectedGenres.indexOf("3011");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#operaCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3012");
+    } else {
+        var index = selectedGenres.indexOf("3012");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#popCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3013");
+    } else {
+        var index = selectedGenres.indexOf("3013");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#rAndBCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3014");
+    } else {
+        var index = selectedGenres.indexOf("3014");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#reggaeCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3015");
+    } else {
+        var index = selectedGenres.indexOf("3015");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#religiousCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3016");
+    } else {
+        var index = selectedGenres.indexOf("3016");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+$("#rockCheck").on("click", function() {
+    if (this.checked) {
+        selectedGenres.push("3017");
+    } else {
+        var index = selectedGenres.indexOf("3017");
+        if (selectedGenres.length > 0) {
+            selectedGenres.splice(index, 1);
+        }
+    }
+    updateQueryGenres();
+    getEvents();
+});
+
+// click handler for Free Music Only
+$("#freeMusicCheck").on("click", function() {
+    if (this.checked) {
+        isFree = true;
+    } else {
+        isFree = false;
+    }
+    updateCost();
+});
+
+// click handlers for distance
+$("#1mile").on("click", function() {
+    locationWithin = "1mi";
+    updateDistance();
+});
+$("#5miles").on("click", function() {
+    locationWithin = "5mi";
+    updateDistance();
+});
+$("#10miles").on("click", function() {
+    locationWithin = "10mi";
+    updateDistance();
+});
+$("#20miles").on("click", function() {
+    locationWithin = "20mi";
+    updateDistance();
+});
+
+// click handlers for sortBy options
+$("#sortByDistance").on("click", function(){
+    sortby = "distance";
+    updateSortBy();
+});
+$("#sortByDate").on("click", function(){
+    sortby = "date";
+    updateSortBy();
+});
+
+// *** EVENTS "PAGE" ***
+// To avoid making a second Ajax call, when the data is drawn from ajax, everything we want to display on the events page is (should be) already rendered, but placed into a hidden div. Then, this click handler reveals that div based on which event is selected, while hiding the list div. Clicking the back button does the reverse, hiding the events "page" while re-showing the list of events. 
+
+$(document.body).on('click', '.searchResult', function(){ // have to pass in parameter to use handler on dynamically created html
+    console.log(this.id);
+    for (j=0; j < allSearchResults.length; j++) {
+        if (this.id === "result" + j) {
+          $("#searchResults").hide();
+          $(".dropdowns").hide();
+          $("#event" + j).show();
+
+         // click handler for back button - inside this function so that it only executes this code under these circumstances
+        $(".back").on("click", function() {
+          hideEventPages();
+        });
+        }
+    }
+
+});
+
+
+
+// *** still to do...
+    // need to convert startTime into user-friendly format
+    // need to incorporate moment JS to update current day / time at top of page
+    // filters:
+        // add filter for search?
+        // should be stored in local/session storage?
+    // sort by:
+        // should be stored in local/session storage?
+
+});
+</script>
+
+</body>
+</html>

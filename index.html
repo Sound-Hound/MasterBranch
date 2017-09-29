@@ -101,10 +101,18 @@
 
 
 //////////////////////////// MODAL LOGIC //////////////////////////////////////
-       
+
+        var audioElement = document.createElement("soundHoundAudio");
+        audioElement.setAttribute("src", "assets/Images/Dog_Bark_BassetHound_Fienup_002.mp3");
+
         $(document).ready(function() {
-            console.log("paged = loaded");
+            console.log("paged = loaded");  
             
+            // $(window).on("load", ".soundHoundAudio", function() { //play audio
+            //     audio.play();
+            //     console.log("play audio");
+            // });
+
             var errorMessage;
             var searchPage = "search-page.html";
             var zipInput = $("#recipient-zip").val();

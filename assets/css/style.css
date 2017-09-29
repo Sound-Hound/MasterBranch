@@ -275,3 +275,21 @@ img.home {
 	right: 50px;
 	top: 45px;
 }
+
+/*From JJbranch1*/
+.eventPage {
+	background-position:center;
+	background-size:cover;
+	border:2px solid darkgray;
+	margin:20px;
+}
+
+.eventData {
+	background-color:black;
+	opacity:0.8;
+	border-radius: 10px;
+	padding:10px;
+	font-size:18px;
+	color: white;
+	max-height:100%;
+\

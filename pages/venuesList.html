@@ -8,6 +8,8 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <!-- link to bootstrap JS plugin -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Link to Moment.js -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   <!-- link to bootstrap -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <!-- link to custom css -->
@@ -21,8 +23,8 @@
     <div class="header"> 
         <h1>Upcoming Events</h1>
         <div class="container displayDiv">
-            <p id="displayLocation">Round Rock, TX</p>
-            <p id="displayDate">09/25/2017</p>
+            <p id="displayLocation"></p>
+            <p id="displayDate"></p>
         </div>
     </div>
     <div class="navArea">
@@ -202,6 +204,10 @@ console.log(userLocation);
 
 
 $(document).ready(function(){
+
+$("#displayLocation").html("Zip: " + userLocation); // updating html based on selectedLocation
+$("#displayDate").html("Today: " + moment().format("MMM Do YY")); // updating html based on moment js    
+
 // fixes behavior of drop-downs within drop-downs 
 $('.dropdown-submenu a.submenu').on("click", function(e){
     $(this).next('ul').toggle();
@@ -277,13 +283,10 @@ var defaultQuery = "https://www.eventbriteapi.com/v3/events/search/?token=" + to
 var queryEventbrite = defaultQuery; // setting query url
 
 // defining function to perform AJAX call
-
 var getEvents = function () {
-$("#eventPage").empty(); // empties eventPage to avoid duplicating data after each search
-
-function getEvents () {
-$("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
-allSearchResults = []; // empties array to avoid duplicating data after each search
+    $("#eventPage").empty(); // empties eventPage to avoid duplicating data after each search
+    $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
+    allSearchResults = []; // empties array to avoid duplicating data after each search
 
 var settings = {
   "async": true,

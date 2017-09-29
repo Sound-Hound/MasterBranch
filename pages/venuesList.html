@@ -154,7 +154,6 @@
     </div>
   </div>
 
-  <div class="container">
     <!--
     <div class="updateResults">
         <button type="button" class="btn btn-secondary" id="updateResults">Update Results</button>
@@ -165,12 +164,17 @@
         applied filters show here 
       </ul>
     </div> -->
-  </div>
 
-  <div id="searchResults">
+    <div id="searchResults">
     <!-- appended info goes here --> 
-  </div>      
+    </div>  
+    
+    <div id="eventPage">
+    <!-- appended info goes here --> 
+    </div>
+    
 </div>
+
 
 <!-- footer -->
 <div class="container">
@@ -207,6 +211,7 @@ $('.dropdown-submenu a.submenu').on("click", function(e){
 
 // array holding all currently selected music genres 
 var selectedGenres = []; // potential bug - if subcategories is empty it behaves the same as if all genres were selected, but to do otherwise results in weird non-intuitive functionality unless we add other features (e.g. a check all and uncheck all option)
+var allSearchResults = [] // array temporarily holding all search results
 
 // default filters
 var categories = 103; // music events - the user cannot change this
@@ -226,13 +231,12 @@ var isFree = false;
 var search = ""; // parameter is q='example'
 
 // function that updates queryEventbrite query based on selected genres
-var updateQueryGenres = function() {
+function updateQueryGenres () {
     var searchGenre = "&subcategories=" + subcategories;
     queryEventbrite = queryEventbrite + searchGenre; // adds subcategories to query
 };
 
-// function updating queryEventbrite whether the search is free or paid
-var updateCost = function() {
+function updateCost () { // function updating queryEventbrite whether the search is free or paid
     if (isFree) {
         cost = "free";
         var onlyFree = "&price=" + cost;
@@ -245,18 +249,25 @@ var updateCost = function() {
     getEvents();
 };
 
-// function updating queryEventbrite based on distance filter
-var updateDistance = function() {
+function updateDistance () { // function updating queryEventbrite based on distance filter
     var newDistance = "&location.within=" + locationWithin;
     queryEventbrite = queryEventbrite + newDistance;
     getEvents();
 };
 
-var updateSortBy = function() {
+function updateSortBy () { // function updating queryEventbrite based on sortby
     var newSort = "&sort_by=" + sortby;
     queryEventbrite = queryEventbrite + newSort;
     getEvents();
-}
+};
+
+function hideEventPages() { // function hiding eventPages
+    for (k=0; k < allSearchResults.length; k++){
+        $("#event" + k).hide();
+        $(".dropdowns").show();
+        $("#searchResults").show();
+    };
+};
 
 // *** getting data from eventbrite API ***
 var token = "DNOQE2ODIDZCCHZJTBUS"; // setting token value
@@ -266,9 +277,13 @@ var defaultQuery = "https://www.eventbriteapi.com/v3/events/search/?token=" + to
 var queryEventbrite = defaultQuery; // setting query url
 
 // defining function to perform AJAX call
-function getEvents () {
 
+var getEvents = function () {
+$("#eventPage").empty(); // empties eventPage to avoid duplicating data after each search
+
+function getEvents () {
 $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
+allSearchResults = []; // empties array to avoid duplicating data after each search
 
 var settings = {
   "async": true,
@@ -324,20 +339,29 @@ $.ajax(settings).done(function (data) {
      } else {
         genre = "Music Genre: unknown";
      }
-    var isFree;
+    var free;
      if (data.events[i].is_free) {
-         isFree = "Free to attend!";
+         free = "Free to attend!";
      } else {
-         isFree = "Entry fees may apply";
+         free = "Entry fees may apply";
      };
-   
+      
+    allSearchResults.push(eventName); // pushing names to allSearchResults array
     // variables just to make the jquery appends easier to read. (Side Note: Raised Hands all the way - totally agree!! -- LJ!)
     var startNewRow = "<div class='row searchResult' id='result" + i + "'><div class='col'><div class='textData'>";
     var endNewRow = "</div></div></div>";
+      
     // updating html display with results
     $("#searchResults").append(startNewRow + eventName + endNewRow); // here is where we can choose what to display on the list page simply by adding variables already defined above
     // updating each row with the corresponding background image
     $("#result" + i).css("background-image", "url('" + eventLogo + "')");
+
+    // updating html in initially hidden event page
+    var startNewEvent = "<div class='row eventPage' id='event" + i + "'><div class='col'><div class='eventData'>";
+    var endNewEvent = "</div></div></div>";
+    $("#eventPage").append(startNewEvent + "<h1 class='eventName'>" + eventName + "</h1><br>" + "<p class='description'>" + description + "</p></br>" + "<p class='genre'>" + genre + "</p><br>" + "<p class='venueName'>" + venueName + "</p><br>" + "<p class='venueAddress'>" + venueAddress + "</p><br>" + "<p class='startTime'>" + startTime + "</p><br>" + "<p class='free'>" + free + "</p>"); // appending data to the eventPage
+    $("#event" + i).hide() // hiding the eventPage divs
+    $("#event" + i).css("background-image", "url('" + eventLogo + "')"); // adding logo again
 
     }
   } else {
@@ -345,7 +369,6 @@ $.ajax(settings).done(function (data) {
   }
 
 });
-
 // *** OPTIONAL ***
     // This is where we would add code to display currently selected filters on the page. Given the current design, I think it adds too much clutter. The user can just click the filter by or sort by buttons to view active filters instead.
 
@@ -595,6 +618,28 @@ $("#sortByDate").on("click", function(){
     sortby = "date";
     updateSortBy();
 });
+
+// *** EVENTS "PAGE" ***
+// To avoid making a second Ajax call, when the data is drawn from ajax, everything we want to display on the events page is (should be) already rendered, but placed into a hidden div. Then, this click handler reveals that div based on which event is selected, while hiding the list div. Clicking the back button does the reverse, hiding the events "page" while re-showing the list of events. 
+
+$(document.body).on('click', '.searchResult', function(){ // have to pass in parameter to use handler on dynamically created html
+    console.log(this.id);
+    for (j=0; j < allSearchResults.length; j++) {
+        if (this.id === "result" + j) {
+          $("#searchResults").hide();
+          $(".dropdowns").hide();
+          $("#event" + j).show();
+
+         // click handler for back button - inside this function so that it only executes this code under these circumstances
+        $(".back").on("click", function() {
+          hideEventPages();
+        });
+        }
+    }
+
+});
+
+
 
 // *** still to do...
     // need to convert startTime into user-friendly format

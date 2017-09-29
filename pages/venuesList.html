@@ -277,13 +277,10 @@ var defaultQuery = "https://www.eventbriteapi.com/v3/events/search/?token=" + to
 var queryEventbrite = defaultQuery; // setting query url
 
 // defining function to perform AJAX call
-
 var getEvents = function () {
-$("#eventPage").empty(); // empties eventPage to avoid duplicating data after each search
-
-function getEvents () {
-$("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
-allSearchResults = []; // empties array to avoid duplicating data after each search
+    $("#eventPage").empty(); // empties eventPage to avoid duplicating data after each search
+    $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
+    allSearchResults = []; // empties array to avoid duplicating data after each search
 
 var settings = {
   "async": true,

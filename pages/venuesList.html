@@ -205,8 +205,8 @@ console.log(userLocation);
 
 $(document).ready(function(){
 
-$("#displayLocation").html("Zip: " + userLocation); // updating html based on selectedLocation
-$("#displayDate").html("Today: " + moment().format("MMM Do YY")); // updating html based on moment js    
+$("#displayLocation").html("Zip Search: " + userLocation); // updating html based on selectedLocation
+$("#displayDate").html(moment().format("MMMM Do, YYYY")); // updating html based on moment js    
 
 // fixes behavior of drop-downs within drop-downs 
 $('.dropdown-submenu a.submenu').on("click", function(e){
@@ -632,20 +632,23 @@ $("#sortByDate").on("click", function(){
 
 $(document.body).on('click', '.searchResult', function(){ // have to pass in parameter to use handler on dynamically created html
     console.log(this.id);
+
     for (j=0; j < allSearchResults.length; j++) {
         if (this.id === "result" + j) {
           $("#searchResults").hide();
           $(".dropdowns").hide();
           $("#event" + j).show();
 
-         // click handler for back button - inside this function so that it only executes this code under these circumstances
-        $(".back").on("click", function() {
-          hideEventPages();
-        });
+        // click handler for back button - inside this function so that it only executes this code under these circumstances
+          $("#event" + j).on('click', function(){
+            hideEventPages();
+            console.log("click back");
+          });
         }
     }
-
 });
+
+
 
 
 

@@ -365,10 +365,13 @@ $.ajax(settings).done(function (data) {
 
     }
   } else {
-    $("#searchResults").text('No results found!'); // if no results are found given the current parameters/filters
+    $("#searchResults").text('No sound bites found! Broaden your search grounds or set your sights on new sounds - just use the filers menus above.'); // if no results are found given the current parameters/filters
   }
 
 });
+
+//////////////////////////////////////////////////////////////////////
+
 // *** OPTIONAL ***
     // This is where we would add code to display currently selected filters on the page. Given the current design, I think it adds too much clutter. The user can just click the filter by or sort by buttons to view active filters instead.
 
@@ -381,11 +384,13 @@ $.ajax(settings).done(function (data) {
             //}
 
 }; // end of getEvents function
+
 getEvents(); // initial call of function with default filters
 
 
+//////////////////////////////////////////////////////////////////////////
 // *** FILTERS FUNCTIONALITY ***
-
+// ------------------------------------
 // click handlers for music genres
     // Note: it's repetitive - could probably be written more efficiently by defining some additional variables
 $("#alternativeCheck").on("click", function() {

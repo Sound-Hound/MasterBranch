@@ -5,8 +5,27 @@
 	text-align: center;
 }
 
+#fullContainer {
+	background-color: #0E0A39;
+	height: 1500px;
+}
+
+#fullContainer.page1{
+	height: 950px;
+}
+
 #mainPageContainer {
 	background-color: #0E0A39;
+}
+
+#carouselContainer {
+	background-color: #0E0A39;
+	height: 600px;
+}
+
+#zipRefreshContainer {
+	background-color: #3B45A8;
+	height: 300px;
 }
 
 #pageHeader {
@@ -15,48 +34,77 @@
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
-	height: 1200px;
+	height: 900px;
+}
 
+#pageHeader.full{
+	height: 950px;
 }
 
 h1.page-header {
-	font-size: 8rem;
+	font-size: 7rem;
 	font-family: 'Oxygen', sans-serif;
 	color: #FBF6F6;
+	border-bottom: 0px;
 /*	text-shadow: 25%;*/ /* How can we make the shadow effect?*/
+}
+
+h1.page-header.page1 {
+	font-size: 11rem;
+	margin-top: 75px;
 }
 
 #mainTitle {
 	padding-top: 3%;
 }
 
-#asideline { /*!Find the default underline in Bootstrap!*/
+#underline { /*!Find the default underline in Bootstrap!*/
 	height: 2px;
 	width: 40%;
 	margin: 0 auto;
 	background-color: #FBF6F6;
 }
 
-#modalButton button{
+div.modal-header {
+	background-color: #5d63b8;
+}
+
+h3.modal-title {
+	color: #fff;
+	font-size: 32px;
+}
+
+div.modal-body {
+	background-color: #e3e4f3;
+}
+
+label.form-control-label {
+	color: #1a1592;
+	font-size: 18px;
+}
+
+div.modal-footer {
+	background-color: #5d63b8;
+}
+
+button#modalButton{
 	width: 300px;
 	height: 100px; 
-	margin-top: 50px;
+	margin-top: 20px;
 	color: #E0E0E0;
 	background-color: #0E0A39;
 	border-radius: 0%;
 }
 
-#bottomText h3{
+h3#bottomText{
 	font-size: 3.5rem;
 	font-family: 'Oxygen', sans-serif;
 	color: #FBF6F6;
 }
 
-#bottomTextArea,h3 {
+h3#bottomTextArea {
 	width: 100%;
-	position: absolute;
-	bottom: 20px;
-	margin: 0 auto;
+	margin-top: 3vh;
 }
 
 div .jumbotron{ /*What is the difference between a space and no-space between the element nodes?*/
@@ -70,13 +118,59 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 
 .carousel-item img {
 	margin: 0 auto;
-	/*	display: block;*/
+}
+
+.imgIcon {
+	width: 250px;
+	height: 230px;
+	margin-top: 15vh;
+}
+
+.btn-search {
+	width: 250px;
+	height: 40px;
+	background-color: #3B45A8;
+}
+
+.carousel-item {
+	margin: 0 auto;
+}
+
+img.d-block.carousel-pic {
+	width: 600px;
+	height: 400px;
+	margin-top: 30px;
+}
+
+#TopTrendingText {
+	color: #E0E0E0;
+	font-family: 'Oxygen Mono', monospace;
+	font-size: 28px;
+	background-color: transparent;
+	margin-top: 30px;
+}
+
+#zipRefresh {
+	width: 200px;
+	height: 150px;
+}
+
+#zipRefreshText {
+	color: #A5A6C1;
+	font-family: 'Oxygen Mono', monospace;
+	font-size: 24px;
+	background-color: transparent;
+	margin-top: 60px;
+}
+
+#searchSection {
+	margin-top: 5px;
 }
 
 /*	added some styling for list page/search results - J.J. */
-.container {
-	background-color: #2C75D6;
-	max-width:60%;
+.container-fluid.page3 {
+/*	background-color: #2C75D6;*/
+	background-color: #3B45A8;
 }
 
 .header p {
@@ -98,22 +192,13 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
     padding-bottom: 10px;
 }
 
-.back img {
-	width:30px;
-	height:30px;
-}
-
-.home img {
-	width:30px;
-	height:30px;
-}
-
 .dropdown {
 	display:inline-block;
 }
 
 .dropdowns {
 	margin-bottom:20px;
+	margin-top: 30px;
 }
 
 .dropdown a {
@@ -143,29 +228,50 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 .textData {
 	background-color:black;
 	opacity:0.8;
-	border-radius: 10px;
+	border-radius: 3px;
 	padding:10px;
 	font-size:18px;
 	color: white;
+	position: relative;
+    height: 46px;
+    top: 155px;
 }
 
 .updateResults {
 	margin-bottom:20px;
 }
 
-.eventPage {
-	background-position:center;
-	background-size:cover;
-	border:2px solid darkgray;
-	margin:20px;
+p#displayLocation {
+	font-size: 2rem;
+	font-family: 'Oxygen', sans-serif;
+	color: #FBF6F6;
 }
 
-.eventData {
-	background-color:black;
-	opacity:0.8;
-	border-radius: 10px;
-	padding:10px;
-	font-size:18px;
-	color: white;
-	max-height:100%;
+p#displayDate {
+	font-size: 2rem;
+	font-family: 'Oxygen', sans-serif;
+	color: #FBF6F6;
+}
+
+a.btn.dropdown-toggle {
+	font-size: 22px;
+	font-family: 'Oxygen', sans-serif;
+	color: #FBF6F6;
+}
+
+img.navButton {
+	width: 75px;
+	height: 75px;
+}
+
+img.back {
+	position: fixed;
+	left: 50px;
+	top: 50px;
+}
+
+img.home {
+	position: fixed;
+	right: 50px;
+	top: 45px;
 }

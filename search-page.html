@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"> <!-- !!!! REMEMEBER THESE META TAG INPUTS.... !!!! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- !!!! REMEMEBER THESE META TAG INPUTS.... !!!! -->
+    <title>Sound Hound - find music venues and live concerts near you!</title>
+    <!-- link to custom css -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <!-- link to bootstrap styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono" rel="stylesheet">
+    
+    <!-- link to jquery script -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+     <!-- link to popper js script-->
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <!-- link to bootstrap script-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <!-- link to firebase script -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <!-- link to local js  file-->
+    <script type="text/javascript" src="./assets/javascript/app.js"></script>
+</head>
+
+<body>
+<!-- navbar -->
+    <div id="mainPageContainer" class="container-fluid">
+        <div id="pageHeader" class="container-fluid">
+            <div class="jumbotron">
+                
+                <div class="row">
+                    <div class="col-md-12"> 
+                        <div class="page-header">
+                            <h1 id="mainTitle" class="page-header text-center">Sound Hound</h1>  
+                            <div id="underline"></div>
+                        </div>                  
+                    </div>
+                </div>
+
+                <div id="searchSection" class="row">
+                    <div class="col-sm-12">  
+                        <img id="venueIcon" class="text-center imgIcon" src="assets/Images/venue4-icon.jpg" alt="Venue Icon">      
+                        <br/>
+                        <br/>                              
+                        <form id="searchConcerts-form">
+                            <div class="form-group">      
+                                <input id="searchConcerts-input" class="form-control" type="text" placeholder="Find Music Near You"  style="width:250px; height:40px; margin: 0 auto">
+                                <br/>
+                                <a href="pages/venuesList.html">
+                                    <button id="findConcert" class="btn btn-info btn-search" type="button" style="background-color:#3B45A8; border-color:#6d75f0">Search</button>
+                                </a>
+<!-- 
+                                <button id="findConcert" class="btn btn-info btn-search" type="button" style="background-color:#3B45A8; border-color:#6d75f0" onclick="pageFunction()">Search</button> -->                                
+                            </div>
+                        </form>           
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="carouselContainer" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div id="topTrendingCarousel" class="carousel slide" data-ride="carousel">
+                    <p id="TopTrendingText">Be and be seen! <br/> Here are the top concerts in your zip.</p>
+                    
+                    <div class="carousel-inner">    
+                        <div class="carousel-item active">
+                            <img id="firstCarouselPic" class="d-block carousel-pic" src="assets/Images/AustinVenuePic.jpg" alt="First slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 id="firstArtistLabel">First Artist Label</h3>
+                                <p id="firstVenueLabel">First Venue Label</p>
+                            </div>           
+                        </div>
+
+                        <div class="carousel-item">
+                            <img id="secondCarouselPic" class="d-block carousel-pic" src="assets/Images/Carousel-example-Pic%232.jpg" alt="Second slide">                 
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 id="secondArtistLabel">Second Artist Label</h3>  
+                                <p id="secondVenueLabel">Second Venue Label</p>        
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img id="thirdCarouselPic" class="d-block carousel-pic" src="assets/Images/Carousel-example-Pic%233.jpg" alt="Third slide"> 
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 id="thirdArtistLabel">Third Artist Label</h3>
+                                <p id="thirdVenueLabel">Third Venue Label</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="carousel-control-prev" href="#topTrendingCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#topTrendingCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>  
+    </div>
+    <div id="zipRefreshContainer" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="newZip">    
+                    <label id="zipRefreshText">Not your jam?  Search a new spot! <br/> Just press rewind.</label>
+                    <br/> 
+                    <a href="index.html"><img id="zipRefresh" class="text-center" src="assets/Images/rewind-button.jpg" alt="Venue Icon"></a>               
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        console.log("paged = loaded");
+
+//////////////////////////////////////////////////////////////////////////////////////// 
+        
+        $('.carousel').data('interval="20"'); //Is this interval working?!
+        $('.carousel').data('ride="true"');
+        $(".carousel-item").carousel();  
+
+//////////////////////////////////////////////////////////////////////////////////////// 
+
+    //USE THIS SESSION STORAGE to channel the zip location needed for the EventBrite API.
+        console.log("This is the sessionStorage : " + sessionStorage.getItem("zip"));
+
+        var zipLocator;
+        function getZipFromStorage() {
+            var zipLocator = sessionStorage.getItem("zip");
+
+            if (zipLocator === null) {
+                zipLocator = "78701"; //Default set as downttown Austin---> can we set it off of IP adr though?
+            } 
+            else {
+                return zipLocator;
+            };
+        };
+        console.log(zipLocator);
+
+
+
+    // DYNAMICALLY UPDATE THESE USING THE EVENTBRITE API!!!
+// --------------------------------------------------------------------------------
+    // <IMG> CAROUSEL PICS: id="firstCarouselPic"
+    // <H3> ARTIST LABEL: id="firstArtistLabel">First Artist Label
+    // <P>> VENUE LABEL: id="firstVenueLabel">First Venue Label   
+//--------------------------------------------------------------------------------
+
+       fixes behavior of drop-downs within drop-downs 
+        $('.dropdown-submenu a.submenu').on("click", function(event){
+            $(this).next('ul').toggle();
+            event.stopPropagation();
+            event.preventDefault();
+        });
+
+        var getEvents = function () {
+            $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
+
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": queryEventbrite,
+              "method": "GET",
+            };
+
+            $.ajax(settings).done(function (data) {
+                if (data.events.length) {
+                    for (i = 0; i < data.events.length; i++) {
+                        // defining variables for all filters
+                        var eventName = data.events[i].name.text;
+                        var eventLogo = data.events[i].logo.original.url;
+                        var description = "Description: " + data.events[i].description.text;
+                        var venueName = "Venue: " + data.events[i].venue.name;
+                    };
+                }
+            });
+        };
+
+    });
+
+    </script>
+
+</body>
+</html>

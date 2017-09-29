@@ -216,8 +216,7 @@ function updateQueryGenres () {
     queryEventbrite = queryEventbrite + searchGenre; // adds subcategories to query
 };
 
-// function updating queryEventbrite whether the search is free or paid
-function updateCost () {
+function updateCost () { // function updating queryEventbrite whether the search is free or paid
     if (isFree) {
         cost = "free";
         var onlyFree = "&price=" + cost;
@@ -230,18 +229,25 @@ function updateCost () {
     getEvents();
 };
 
-// function updating queryEventbrite based on distance filter
-function updateDistance () {
+function updateDistance () { // function updating queryEventbrite based on distance filter
     var newDistance = "&location.within=" + locationWithin;
     queryEventbrite = queryEventbrite + newDistance;
     getEvents();
 };
 
-function updateSortBy () {
+function updateSortBy () { // function updating queryEventbrite based on sortby
     var newSort = "&sort_by=" + sortby;
     queryEventbrite = queryEventbrite + newSort;
     getEvents();
-}
+};
+
+function hideEventPages() { // function hiding eventPages
+    for (k=0; k < allSearchResults.length; k++){
+        $("#event" + k).hide();
+        $(".dropdowns").show();
+        $("#searchResults").show();
+    };
+};
 
 // *** getting data from eventbrite API ***
 var token = "DNOQE2ODIDZCCHZJTBUS"; // setting token value
@@ -252,7 +258,7 @@ var queryEventbrite = defaultQuery; // setting query url
 
 // defining function to perform AJAX call
 var getEvents = function () {
-
+$("#eventPage").empty(); // empties eventPage to avoid duplicating data after each search
 $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
 allSearchResults = []; // empties array to avoid duplicating data after each search
 
@@ -329,7 +335,7 @@ $.ajax(settings).done(function (data) {
     // updating html in initially hidden event page
     var startNewEvent = "<div class='row eventPage' id='event" + i + "'><div class='col'><div class='eventData'>";
     var endNewEvent = "</div></div></div>";
-    $("#eventPage").append(startNewEvent + "<h1 class='eventName'>" + eventName + "</h1><br>" + "<p class='description'>" + description + "</p></br>" + "<p class='genre'>" + genre + "</p><br>" + "<p class='venueName'>" + venueName + "</p><br>" + "<p class='venueAddress'>" + venueAddress + "</p><br>" + "<p class='startTime'>" + startTime + "</p><br>" + "<p class='free'>" + free + "</p><br>"); // appending data to the eventPage
+    $("#eventPage").append(startNewEvent + "<h1 class='eventName'>" + eventName + "</h1><br>" + "<p class='description'>" + description + "</p></br>" + "<p class='genre'>" + genre + "</p><br>" + "<p class='venueName'>" + venueName + "</p><br>" + "<p class='venueAddress'>" + venueAddress + "</p><br>" + "<p class='startTime'>" + startTime + "</p><br>" + "<p class='free'>" + free + "</p>"); // appending data to the eventPage
     $("#event" + i).hide() // hiding the eventPage divs
     $("#event" + i).css("background-image", "url('" + eventLogo + "')"); // adding logo again
 
@@ -339,7 +345,6 @@ $.ajax(settings).done(function (data) {
   }
 
 });
-
 // *** OPTIONAL ***
     // This is where we would add code to display currently selected filters on the page. Given the current design, I think it adds too much clutter. The user can just click the filter by or sort by buttons to view active filters instead.
 
@@ -598,14 +603,12 @@ $(document.body).on('click', '.searchResult', function(){ // have to pass in par
     for (j=0; j < allSearchResults.length; j++) {
         if (this.id === "result" + j) {
           $("#searchResults").hide();
+          $(".dropdowns").hide();
           $("#event" + j).show();
 
          // click handler for back button - inside this function so that it only executes this code under these circumstances
         $(".back").on("click", function() {
-            for (k=0; k < allSearchResults.length; k++){
-              $("#event" + k).hide();
-              $("#searchResults").show();
-            }
+          hideEventPages();
         });
         }
     }

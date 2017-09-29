@@ -156,7 +156,6 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 .eventPage {
 	background-position:center;
 	background-size:cover;
-	height:600px;
 	border:2px solid darkgray;
 	margin:20px;
 }
@@ -168,4 +167,5 @@ div .jumbotron{ /*What is the difference between a space and no-space between th
 	padding:10px;
 	font-size:18px;
 	color: white;
+	max-height:100%;
 }

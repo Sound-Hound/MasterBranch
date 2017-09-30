@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Youtube Project</title>
+</head>
+
+<body>
+    <form id="search-term">
+        Entry:
+        <br>
+        <input id="query" type="text">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="search-results">
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="javascript.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#search-term").submit(function(event) {
+            event.preventDefault();
+            var searchTerm = $("#query").val();
+            getRequest(searchTerm);
+        });
+    });
+
+    function getRequest(searchTerm) {
+        url = "https://www.googleapis.com/youtube/v3/search";
+        var params = {
+            part: "snippet",
+            key: "AIzaSyCpm-cAzHpRF5IjdqRdUvJ2-w5xfp89s7E",
+            q: searchTerm
+        };
+
+        $.getJSON(url, params, function(searchTerm) {
+            showResults(searchTerm);
+        });
+    }
+
+    function showResults(results) {
+        var html = "";
+        var entries = results.items;
+
+        $.each(entries, function(index, value) {
+            var title = value.snippet.title;
+            var thumbnail = value.snippet.thumbnails.default.url;
+            html += "<p>" + title + "</p>";
+            html += '<img src="' + thumbnail + '">';
+        });
+
+        $("#search-results").html(html);
+    }
+    </script>
+    
+</body>
+</html>
+<!-- Search URL -->
+<!-- End video_id after the equal sign -->
+<!-- This is where the video result will appear based on the search query. Unfortunately there's no API for the iFrame instance. I'm still trying to research that, but it might be a wash. -->
+<!-- https://www.youtube.com/watch?v= -->

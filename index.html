@@ -89,30 +89,12 @@
 
     <script type="text/javascript">
 
-///////////////////////// FIREBASE DATATBASE SET-UP ////////////////////////////////////
-        // var config = {
-        //     apiKey: "AIzaSyCLbEjKvRPiZdO3I6ADlExj_N0ZD60nATk",
-        //     authDomain: "recent-user-with-all-users.firebaseapp.com",
-        //     databaseURL: "https://recent-user-with-all-users.firebaseio.com",
-        //     storageBucket: "recent-user-with-all-users.appspot.com"
-        // };
-        // firebase.initializeApp(config);
-        // var dataRef = firebase.database();
-
-
-//////////////////////////// MODAL LOGIC //////////////////////////////////////
-
         var audioElement = document.createElement("soundHoundAudio");
         audioElement.setAttribute("src", "assets/Images/Dog_Bark_BassetHound_Fienup_002.mp3");
 
         $(document).ready(function() {
             console.log("paged = loaded");  
             
-            // $(window).on("load", ".soundHoundAudio", function() { //play audio
-            //     audio.play();
-            //     console.log("play audio");
-            // });
-
             var errorMessage;
             var searchPage = "search-page.html";
             var zipInput = $("#recipient-zip").val();

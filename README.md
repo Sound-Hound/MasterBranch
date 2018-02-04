@@ -31,20 +31,12 @@ Find concert by band:
 ```
 
 ## API's Utilized
-* YELP
-    * https://www.yelp.com/developers/documentation/v2/overview
 * Google Maps
     * https://developers.google.com/maps/
 * YouTube
     * https://developers.google.com/youtube/
-* TicketMaster
-    * http://developer.ticketmaster.com/
 * Eventbrite
     * https://www.eventbrite.com/developer/v3/
-* Seatgeek
-    * http://platform.seatgeek.com/
-* Songkick
-    * https://www.songkick.com/developer
 * Uber
     * https://developer.uber.com/
 
@@ -72,11 +64,11 @@ Find concert by band:
 
 ## Meta
 
-Lisa Jetton – Project Manager & Website Developer
+Lisa Jetton – Project Manager & Website Developer & UX Design
 
-J.J. Bennett – Content Specialist/Editor & Website Developer
+J.J. Bennett – Content Specialist/Editor & Website Developer & UX Design
 
-Joseph Pineiro – UX Design & Website Developer
+Joseph Pineiro – Design and Wireframing
 
 Christopher Elliott – Website Developer & Tester/Maintainer
 

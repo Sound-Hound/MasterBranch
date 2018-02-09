@@ -45,22 +45,11 @@
                         <br/>                              
                         <form id="searchConcerts-form">
                             <div class="form-group">      
-                                <input id="searchConcerts-input" class="form-control" type="text" placeholder="Find Music Near You"  style="width:250px; height:40px; margin: 0 auto">
-                                <div class="container dropdowns">
-                                    <div class="dropdown sortBy">
-                                        <a class="btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hone Your Search Here<span class="caret"></span></a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li><a id="sortByDistance" href="#">Distance</a></li>
-                                            <li><a id="sortByDate" href="#">Date</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <input id="searchConcerts-input" class="form-control" type="text" placeholder="How many miles away?"  style="width:250px; height:40px; margin: 0 auto">
                                 <br/>
-                                <div>
-                                    <a href="pages/venuesList.html">
-                                        <button id="findConcert" class="btn btn-info btn-search" type="button" style="background-color:#3B45A8; border-color:#6d75f0">Search</button>
-                                    </a> 
-                                </div>                              
+                                <a href="pages/venuesList.html">
+                                    <button id="findConcert" class="btn btn-info btn-search" type="button" style="background-color:#3B45A8; border-color:#6d75f0">Search</button>
+                                </a>                                
                             </div>
                         </form>           
                     </div>
@@ -157,20 +146,43 @@
 
 
 
-    // DYNAMICALLY UPDATE THESE USING THE EVENTBRITE API!!! -- FILTER PER CLOSEST TO USER!!!!!!!!!
+    // DYNAMICALLY UPDATE THESE USING THE EVENTBRITE API!!!
 // --------------------------------------------------------------------------------
     // <IMG> CAROUSEL PICS: id="firstCarouselPic"
     // <H3> ARTIST LABEL: id="firstArtistLabel">First Artist Label
     // <P>> VENUE LABEL: id="firstVenueLabel">First Venue Label   
 //--------------------------------------------------------------------------------
-   // store this as session storage to and save to a variable name, that we can pass into the enxt page, and let it process the api param ajax/calls there!...CANNOT due to the Carousel need of the info...? CORRECT?
+
        
         $('.dropdown-submenu a.submenu').on("click", function(event){
             $(this).next('ul').toggle();
             event.stopPropagation();// fixes behavior of drop-downs within drop-downs 
             event.preventDefault();
         });
-        
+
+        var getEvents = function () {
+            $("#searchResults").empty(); // empties searchResults to avoid duplicating data after each search
+
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": queryEventbrite,
+              "method": "GET",
+            };
+
+            $.ajax(settings).done(function (data) {
+                if (data.events.length) {
+                    for (i = 0; i < data.events.length; i++) {
+                        // defining variables for all filters
+                        var eventName = data.events[i].name.text;
+                        var eventLogo = data.events[i].logo.original.url;
+                        var description = "Description: " + data.events[i].description.text;
+                        var venueName = "Venue: " + data.events[i].venue.name;
+                    };
+                }
+            });
+        };
+
     });
 
     </script>

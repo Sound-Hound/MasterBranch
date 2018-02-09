@@ -157,11 +157,11 @@
                     else {
                        console.log("err: search-page SHOULD be working!");
 
-                       // RECORD THE ZIP ----> LOCAL STORAGE!!!!
+                       // RECORD THE ZIP ----> LOCAL STORAGE?!
                        zipInput.trim();
                        sessionStorage.clear();
                        sessionStorage.setItem("zip", zipInput);
-                       console.log("This is the sessionStorage : " +sessionStorage.getItem("zip"));
+                       console.log("This is the sessionStorage : " + sessionStorage.getItem("zip"));
                        
                        $("#recipient-zip").val("");
                        window.location.href = searchPage;
@@ -175,7 +175,7 @@
             $("#zipButton").on("click", function() { 
                 event.preventDefault();
 
-                searchPage = "search-page.html";
+                searchPage = "./pages/search-page.html";
 
                 zipInput = $("#recipient-zip").val();
                 console.log(zipInput);

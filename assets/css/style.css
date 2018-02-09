@@ -292,4 +292,9 @@ img.home {
 	font-size:18px;
 	color: white;
 	max-height:100%;
-\
+}
+
+.carousel-text {
+	color: #70d5b0;
+	text-shadow: 5px 5px 5px 5px black;
+}

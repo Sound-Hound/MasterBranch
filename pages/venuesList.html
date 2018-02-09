@@ -6,7 +6,7 @@
     <title>Sound Hound - Upcoming Events</title>
 
     <!-- fav image -->
-    <link rel="icon" type="image/jpg" sizes="16x16" href="assets/Images/venue4-icon.jpg">
+    <link rel="icon" type="image/jpg" sizes="16x16" href="../assets/Images/venue4-icon.jpg">
 
     <!-- link to jquery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -22,23 +22,23 @@
 
 <body>
     <!-- header -->
-    <div class="container-fluid page3">
+    <nav class="navbar fixed-top bg-faded navArea" style="background-color: #3B45A8; margin-bottom: 0px; position: fixed; top: 0px; z-index: 2; width: 100%">
+        <!-- back button -->
+        <a href="../search-page.html" class="back">
+            <img class="navbar-brand navButton back" src="../assets/images/back-button.png" alt="back-button">
+        </a>
+        <!-- home button -->
+        <a href="../index.html" class="home">
+            <img class="navbar-brand navButton home" src="../assets/Images/home-button.png" alt="home-button">
+        </a>
+    </nav>
+    <div id="header-main" class="container-fluid page3">
         <div class="header">
             <h1>Upcoming Events</h1>
             <div class="container displayDiv">
                 <p id="displayLocation"></p>
                 <p id="displayDate"></p>
             </div>
-        </div>
-        <div class="navArea">
-            <!-- back button -->
-            <a href="../search-page.html" class="back">
-          <img class="navButton back" src="../assets/images/back-button.png" alt="back-button">
-        </a>
-            <!-- home button -->
-            <a href="../index.html" class="home">
-          <img class="navButton home" src="../assets/Images/home-button.png" alt="home-button">
-        </a>
         </div>
     </div>
     <!-- search results -->

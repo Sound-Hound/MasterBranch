@@ -259,21 +259,29 @@ a.btn.dropdown-toggle {
 	color: #FBF6F6;
 }
 
+#header-main {
+	margin-top: 5%;
+}
+
+
+.nav.navArea {
+/*    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+/*    top: 0;  Position the navbar at the top of the page */
+   /* width: 100%; *//* Full width */*/
+}
+
 img.navButton {
 	width: 75px;
 	height: 75px;
 }
 
 img.back {
-	position: fixed;
-	left: 50px;
-	top: 50px;
+	margin-left: 2%;
 }
 
 img.home {
-	position: fixed;
-	right: 50px;
-	top: 45px;
+	margin-left: 85%;
 }
 
 /*From JJbranch1*/

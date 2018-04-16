@@ -430,7 +430,7 @@
                         var startNewEvent = "<div class='row eventPage' id='event" + i + "'><div class='col'><div class='eventData'>";
                         var endNewEvent = "</div></div></div>";
 
-                        $("#eventPage").append(startNewEvent + "<h1 class='eventName'>" + eventName + "</h1><br>" + "<p class='description'>" + display + "</p></br>" + "<p class='eventWebsite'> Full Description: <a href='eventWebsite' target='_blank'>" + eventWebsite + "</a></p></br>" + "<p class='genre'>" + genre + "</p><br>" + "<p class='venueName'>" + venueName + "</p><br>" + "<p class='venueAddress'>" + venueAddress + "</p><br>" + "<p class='startTime'>" + startTime + "</p><br>" + "<p class='free'>" + free + "</p>"); // appending data to the eventPage
+                        $("#eventPage").append(startNewEvent + "<h6><em>Click to exit.</em></h6><h1 class='eventName'>" + eventName + "</h1><br>" + "<p class='description'>" + display + "</p></br>" + "<p class='eventWebsite'> Full Description: <a href='eventWebsite' target='_blank'>" + eventWebsite + "</a></p></br>" + "<p class='genre'>" + genre + "</p><br>" + "<p class='venueName'>" + venueName + "</p><br>" + "<p class='venueAddress'>" + venueAddress + "</p><br>" + "<p class='startTime'>" + startTime + "</p><br>" + "<p class='free'>" + free + "</p>"); // appending data to the eventPage
                         $("#event" + i).hide(); // hiding the eventPage divs
                         $("#event" + i).css("background-image", "url('" + eventLogo + "')"); // adding logo again
 

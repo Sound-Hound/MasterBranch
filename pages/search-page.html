@@ -52,7 +52,7 @@
                             <div class="form-group">      
                                 <input id="searchConcerts-input" class="form-control" type="text" placeholder="How many miles away?"  style="width:250px; height:40px; margin: 0 auto">
                                 <br/>
-                                <a href="venuesList.html">
+                                <a>
                                     <button id="findConcert" class="btn btn-info btn-search" type="button" style="background-color:#3B45A8; border-color:#6d75f0">Search</button>
                                 </a>                                
                             </div>
@@ -126,6 +126,32 @@
     $(document).ready(function() {
         console.log("paged = loaded");
 
+        // listener for "enter" in mile locator
+            $("#searchConcerts-input").keypress(function(event) {
+              if (event.keyCode === 13 && $("#searchConcerts-input").val() !== "") {
+                event.preventDefault();
+                distanceFunction();
+              }
+            });
+
+            $("#zipButton").on("click", function() { 
+                distanceFunction();                     
+            });
+
+            function distanceFunction() {
+                distanceInput = $("#searchConcerts-input").val().trim();
+                console.log(distanceInput);
+
+                if (distanceInput !== "") {
+                   // RECORD THE distance into the Session storage
+                   sessionStorage.setItem("distance", distanceInput);
+                   console.log("This is the Distance sessionStorage : " + sessionStorage.getItem("distance"));
+                   
+                   $("#recipient-zip").val("");
+                   window.location.href = "./venuesList.html";
+                }
+            };
+
 //////////////////////////////////////////////////////////////////////////////////////// 
         
         $('.carousel').data('ride="true"');
@@ -148,13 +174,6 @@
             };
         };
         console.log(zipLocator);
-
-    // DYNAMICALLY UPDATE THESE USING THE EVENTBRITE API!!!
-// --------------------------------------------------------------------------------
-    // <IMG> CAROUSEL PICS: id="firstCarouselPic"
-    // <H3> ARTIST LABEL: id="firstArtistLabel">First Artist Label
-    // <P>> VENUE LABEL: id="firstVenueLabel">First Venue Label   
-//--------------------------------------------------------------------------------
             
         var token = "DNOQE2ODIDZCCHZJTBUS"; // setting token value
         var categories = 103; // music events - the user cannot change this

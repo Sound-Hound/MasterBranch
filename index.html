@@ -117,7 +117,7 @@
             // });
 
             var errorMessage;
-            var searchPage = "search-page.html";
+            var searchPage = "./pages/search-page.html";
             var zipInput = $("#recipient-zip").val();
             console.log(zipInput);
                 
@@ -160,7 +160,7 @@
                     else {
                        console.log("err: search-page SHOULD be working!");
 
-                       // RECORD THE ZIP ----> LOCAL STORAGE?!
+                       // RECORD THE ZIP ----> Session Storage
                        zipInput.trim();
                        sessionStorage.clear();
                        sessionStorage.setItem("zip", zipInput);
@@ -175,10 +175,17 @@
                 }
             };
             
+            // listener for "enter" in zipInput
+            $("#recipient-zip").keypress(function(event) {
+              if (event.keyCode === 13 && $("#recipient-zip").val() !== "") {
+                event.preventDefault();
+                zipFunction();
+              }
+            });
+
             $("#zipButton").on("click", function() { 
                 event.preventDefault();
-
-                searchPage = "pages/search-page.html";
+                // searchPage = "pages/search-page.html";
 
                 zipInput = $("#recipient-zip").val();
                 console.log(zipInput);
